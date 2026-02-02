@@ -1,0 +1,165 @@
+============================================================
+NOISEBRIDGE LIBRARY — DATA QUALITY REPORT
+============================================================
+
+Total books processed: 1100
+Overall data completeness: 86.4%
+
+------------------------------------------------------------
+FIELD COMPLETENESS
+------------------------------------------------------------
+  Title                 1100/1100  (100.0%)  [####################]
+  Author                1026/1100  ( 93.3%)  [##################..]
+  ISBN                   952/1100  ( 86.5%)  [#################...]
+  Publisher             1046/1100  ( 95.1%)  [###################.]
+  Year                  1020/1100  ( 92.7%)  [##################..]
+  Genre                  988/1100  ( 89.8%)  [#################...]
+  Pages                  989/1100  ( 89.9%)  [#################...]
+  Shelf Location        1100/1100  (100.0%)  [####################]
+  Cover URL              420/1100  ( 38.2%)  [#######.............]
+  Summary                811/1100  ( 73.7%)  [##############......]
+  Google VolumeID        999/1100  ( 90.8%)  [##################..]
+
+------------------------------------------------------------
+REQUIRED FIELD VALIDATION
+------------------------------------------------------------
+  Title                OK
+  Author               MISSING 74
+  Shelf Location       OK
+  WARNING: Some required fields are missing!
+
+------------------------------------------------------------
+QUALITY FLAGS
+------------------------------------------------------------
+  Entries flagged for review: 863 (78.5%)
+
+  Missing ISBN                                    148
+  Duplicate ISBN - verify edition                  52
+  Possible duplicate entry                         69
+  Genre not classified                            112
+  Publisher unknown                                54
+  Summary available via Google Books              192
+  Cover image available via Google Books          622
+
+------------------------------------------------------------
+DUPLICATE ENTRIES
+------------------------------------------------------------
+  Duplicate Title+Author combinations: 34
+    [2x] Advanced Programming in the UNIX Envi... — W. Richard Stevens,Stephen A. Rago
+    [2x] Automating UNIX and Linux Administration — Kirk Bauer
+    [2x] Computer Graphics Principles and Prac... — Foley James D,Dam Andries van,Feiner Steven K,Hughes John F
+    [2x] DNS and BIND — Paul Albitz,Cricket Liu
+    [2x] Eclipse IDE Pocket Guide — Ed Burnette
+    [2x] Electrical Engineering Reference Manual — Raymond B. Yarbrough
+    [2x] Jim Blinn's Corner: A Trip Down the G... — Jim Blinn
+    [2x] Learning Perl/Tk — Nancy Walsh
+    [2x] Linux Server Hacks — Rob Flickenger
+    [2x] Make: Made On Mars, Vol 47 — N/A
+    [2x] Make: Technology on Your Time Volume 04 — Mark Frauenfelder
+    [2x] Make: Technology on Your Time Volume 05 — Mark Frauenfelder
+    [2x] Make: Technology on Your Time Volume 39 — Mark Frauenfelder
+    [2x] Managing Gigabytes — Ian H. Witten,Alistair Moffat,Timothy C. Bell
+    [2x] Managing NFS and NIS — Mike Eisler,Hal Stern,Ricardo Labiaga
+    [2x] Mastering Regular Expressions — Jeffrey E. F. Friedl
+    [2x] Mathematica for Scientists and Engineers — Thomas Bazyli Bahder
+    [2x] Network Processor Design — Mark A. Franklin,Haldun Hadimioglu,Patrick Crowley,Peter Z. Onufryk
+    [2x] PC Hacks — Jim Aspinwall
+    [2x] Programming Perl — Larry Wall,Jon Orwant,Tom Christiansen
+    [2x] Quantum Computing: An Applied Approach — Jack D. Hidary
+    [2x] Smalltalk-80 — Adele Goldberg,David Robson
+    [2x] TTL Cookbook — Don Lancaster
+    [3x] The C++ Standard Library — Nicolai M. Josuttis
+    [2x] The Complete FreeBSD — Greg Lehey
+    [2x] The Fellowship of the Ring — John Ronald Reuel Tolkien
+    [2x] The Linux Programming Interface — Michael Kerrisk
+    [2x] The Little Schemer, fourth edition — Daniel P. Friedman,Matthias Felleisen
+    [2x] The McGraw-Hill Handbook of Essential... — Ejup N. Ganić
+    [2x] The Pyramid Principle — Barbara Minto
+    [2x] The Return of the King — John Ronald Reuel Tolkien
+    [2x] The Two Towers — John Ronald Reuel Tolkien
+    [2x] UNIX in a Nutshell — Arnold Robbins
+    [2x] Writing Excel Macros with VBA — Steven Roman
+
+  Duplicate ISBNs: 26
+    ISBN 9780070227644:
+      - The McGraw-Hill Handbook of Essential Engineeri...
+      - The McGraw-Hill Handbook of Essential Engineeri...
+    ISBN 9780132977739:
+      - The C++ Standard Library
+      - The C++ Standard Library
+    ISBN 9780134684307:
+      - Inside Smalltalk, Vol 1
+      - Inside Smalltalk, Vol 2
+    ISBN 9780201352283:
+      - Computer Graphics Principles and Practice: Seco...
+      - Computer Graphics Principles and Practice: Seco...
+    ISBN 9780201540901:
+      - Mathematica for Scientists and Engineers
+      - Mathematica for Scientists and Engineers
+    ISBN 9780262560993:
+      - The Little Schemer, fourth edition
+      - The Little Schemer, fourth edition
+    ISBN 9780273659037:
+      - The Pyramid Principle
+      - The Pyramid Principle
+    ISBN 9780321637734:
+      - Advanced Programming in the UNIX Environment
+      - Advanced Programming in the UNIX Environment
+    ISBN 9780596000271:
+      - Programming Perl
+      - Programming Perl
+    ISBN 9780596001582:
+      - DNS and BIND
+      - DNS and BIND
+    ISBN 9780596002893:
+      - Mastering Regular Expressions
+      - Mastering Regular Expressions
+    ISBN 9780596003593:
+      - Writing Excel Macros with VBA
+      - Writing Excel Macros with VBA
+    ISBN 9780596004613:
+      - Linux Server Hacks
+      - Linux Server Hacks
+    ISBN 9780596100810:
+      - Make: Technology on Your Time Volume 04
+      - Make: Technology on Your Time Volume 04
+    ISBN 9780596523688:
+      - Make: Technology on Your Time Volume 05
+      - Make: Technology on Your Time Volume 05
+    ISBN 9780596551940:
+      - Managing NFS and NIS
+      - Managing NFS and NIS
+    ISBN 9780672210358:
+      - TTL Cookbook
+      - TTL Cookbook
+    ISBN 9780912045108:
+      - Electrical Engineering Reference Manual
+      - Electrical Engineering Reference Manual
+    ISBN 9781119443766:
+      - Elementary Differential Equations and Boundary ...
+      - Elementary Differential Equations and Boundary ...
+    ISBN 9781457183829:
+      - Make: Technology on Your Time Volume 39
+      - Make: Technology on Your Time Volume 39
+    ISBN 9781558603875:
+      - Jim Blinn's Corner: A Trip Down the Graphics Pi...
+      - Jim Blinn's Corner: A Trip Down the Graphics Pi...
+    ISBN 9781558605701:
+      - Managing Gigabytes
+      - Managing Gigabytes
+    ISBN 9781565923140:
+      - Learning Perl/Tk
+      - Learning Perl/Tk
+    ISBN 9781590592120:
+      - Automating UNIX and Linux Administration
+      - Automating UNIX and Linux Administration
+    ISBN 9781593272203:
+      - The Linux Programming Interface
+      - The Linux Programming Interface
+    ISBN 9783030832742:
+      - Quantum Computing: An Applied Approach
+      - Quantum Computing: An Applied Approach
+
+============================================================
+END OF REPORT
+============================================================
