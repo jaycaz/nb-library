@@ -390,72 +390,181 @@ def write_csv(data: List[Dict[str, str]], filepath: str) -> None:
         sys.exit(1)
 
 
-def print_summary(cleaned_data: List[Dict[str, str]]) -> None:
-    """Print summary statistics about the cleaned data."""
+def collect_stats(cleaned_data: List[Dict[str, str]],
+                  duplicate_isbns: set, duplicate_titles: set) -> Dict:
+    """
+    Collect comprehensive statistics from cleaned data.
+
+    Args:
+        cleaned_data: List of cleaned row dictionaries
+        duplicate_isbns: Set of ISBNs that appear multiple times
+        duplicate_titles: Set of Title+Author combos that appear multiple times
+
+    Returns:
+        Dictionary of statistics for report generation
+    """
     total = len(cleaned_data)
 
-    # Count rows with notes (quality flags)
-    with_notes = sum(1 for row in cleaned_data if row["Notes"])
+    # Field completeness counts
+    filled = {col: 0 for col in OUTPUT_COLUMNS}
+    for row in cleaned_data:
+        for col in OUTPUT_COLUMNS:
+            val = row.get(col, "")
+            if val and val not in ("N/A", "Unknown"):
+                filled[col] += 1
 
-    # Count specific flag types
+    # Quality flag counts
     flag_counts = {
-        "Missing Title": 0,
-        "Missing Author": 0,
+        "MISSING: Title": 0,
+        "MISSING: Author": 0,
         "Missing ISBN": 0,
-        "Invalid ISBN": 0,
-        "Duplicate ISBN": 0,
-        "Duplicate entry": 0,
+        "INVALID ISBN": 0,
+        "Duplicate ISBN - verify edition": 0,
+        "Possible duplicate entry": 0,
         "Genre not classified": 0,
         "Publisher unknown": 0,
-        "Google Books enrichment": 0
+        "Summary available via Google Books": 0,
+        "Cover image available via Google Books": 0,
     }
 
-    for row in cleaned_data:
+    flagged_rows = []
+    for i, row in enumerate(cleaned_data):
         notes = row["Notes"]
-        if "MISSING: Title" in notes:
-            flag_counts["Missing Title"] += 1
-        if "MISSING: Author" in notes:
-            flag_counts["Missing Author"] += 1
-        if "Missing ISBN" in notes:
-            flag_counts["Missing ISBN"] += 1
-        if "INVALID ISBN" in notes:
-            flag_counts["Invalid ISBN"] += 1
-        if "Duplicate ISBN" in notes:
-            flag_counts["Duplicate ISBN"] += 1
-        if "Possible duplicate entry" in notes:
-            flag_counts["Duplicate entry"] += 1
-        if "Genre not classified" in notes:
-            flag_counts["Genre not classified"] += 1
-        if "Publisher unknown" in notes:
-            flag_counts["Publisher unknown"] += 1
-        if "available via Google Books" in notes:
-            flag_counts["Google Books enrichment"] += 1
+        if not notes:
+            continue
+        flagged_rows.append((i + 1, row["Title"], row["Author"], notes))
+        for flag in flag_counts:
+            if flag in notes:
+                flag_counts[flag] += 1
 
-    # Verify required fields
-    missing_title = sum(1 for row in cleaned_data if not row["Title"])
-    missing_author = sum(1 for row in cleaned_data if not row["Author"])
-    missing_shelf = sum(1 for row in cleaned_data if not row["Shelf Location"])
+    # Duplicate title details
+    dup_title_details = []
+    for key in sorted(duplicate_titles):
+        title, author = key.split("|", 1)
+        count = sum(1 for r in cleaned_data
+                    if r["Title"] == title and r["Author"] == author)
+        dup_title_details.append((title, author, count))
 
-    print("\n" + "=" * 60)
-    print("SUMMARY REPORT")
-    print("=" * 60)
-    print(f"Total rows processed: {total}")
-    print(f"Rows with quality flags: {with_notes} ({with_notes*100/total:.1f}%)")
-    print("\nQuality flag breakdown:")
+    # Duplicate ISBN details
+    dup_isbn_details = []
+    for isbn in sorted(duplicate_isbns):
+        titles = [r["Title"] for r in cleaned_data
+                  if r["ISBN"] == isbn]
+        dup_isbn_details.append((isbn, titles))
+
+    # Overall completeness: percentage of non-empty cells across all columns
+    # (excluding Loaned To and Notes which are expected to be sparse)
+    data_columns = [c for c in OUTPUT_COLUMNS if c not in ("Loaned To", "Notes")]
+    total_cells = total * len(data_columns)
+    filled_cells = sum(filled[c] for c in data_columns)
+    completeness_pct = (filled_cells / total_cells * 100) if total_cells else 0
+
+    return {
+        "total": total,
+        "filled": filled,
+        "flag_counts": flag_counts,
+        "flagged_rows": flagged_rows,
+        "dup_title_details": dup_title_details,
+        "dup_isbn_details": dup_isbn_details,
+        "completeness_pct": completeness_pct,
+    }
+
+
+def generate_report(stats: Dict) -> str:
+    """
+    Format a plain-text data quality report from collected stats.
+
+    Args:
+        stats: Statistics dictionary from collect_stats()
+
+    Returns:
+        Formatted report string
+    """
+    total = stats["total"]
+    filled = stats["filled"]
+    flag_counts = stats["flag_counts"]
+    lines = []
+
+    lines.append("=" * 60)
+    lines.append("NOISEBRIDGE LIBRARY — DATA QUALITY REPORT")
+    lines.append("=" * 60)
+
+    # --- Overview ---
+    lines.append("")
+    lines.append(f"Total books processed: {total}")
+    lines.append(f"Overall data completeness: {stats['completeness_pct']:.1f}%")
+
+    # --- Field completeness ---
+    lines.append("")
+    lines.append("-" * 60)
+    lines.append("FIELD COMPLETENESS")
+    lines.append("-" * 60)
+    for col in OUTPUT_COLUMNS:
+        if col in ("Loaned To", "Notes"):
+            continue
+        count = filled[col]
+        pct = count / total * 100 if total else 0
+        bar = "#" * int(pct // 5) + "." * (20 - int(pct // 5))
+        lines.append(f"  {col:<20s} {count:>5d}/{total}  ({pct:5.1f}%)  [{bar}]")
+
+    # --- Required fields ---
+    lines.append("")
+    lines.append("-" * 60)
+    lines.append("REQUIRED FIELD VALIDATION")
+    lines.append("-" * 60)
+    required = ["Title", "Author", "Shelf Location"]
+    all_ok = True
+    for col in required:
+        missing = total - filled[col]
+        status = "OK" if missing == 0 else f"MISSING {missing}"
+        if missing > 0:
+            all_ok = False
+        lines.append(f"  {col:<20s} {status}")
+    if all_ok:
+        lines.append("  All required fields populated.")
+    else:
+        lines.append("  WARNING: Some required fields are missing!")
+
+    # --- Quality flags ---
+    lines.append("")
+    lines.append("-" * 60)
+    lines.append("QUALITY FLAGS")
+    lines.append("-" * 60)
+    flagged_total = len(stats["flagged_rows"])
+    lines.append(f"  Entries flagged for review: {flagged_total}"
+                 f" ({flagged_total / total * 100:.1f}%)" if total else "")
+    lines.append("")
     for flag, count in flag_counts.items():
         if count > 0:
-            print(f"  - {flag}: {count}")
+            lines.append(f"  {flag:<45s} {count:>5d}")
 
-    print("\nRequired field validation:")
-    print(f"  - Missing Title: {missing_title} (should be 0)")
-    print(f"  - Missing Author: {missing_author} (should be 0)")
-    print(f"  - Missing Shelf Location: {missing_shelf} (should be 0)")
+    # --- Duplicates ---
+    lines.append("")
+    lines.append("-" * 60)
+    lines.append("DUPLICATE ENTRIES")
+    lines.append("-" * 60)
 
-    if missing_title or missing_author or missing_shelf:
-        print("\n⚠ WARNING: Some required fields are missing!")
-    else:
-        print("\n✓ All required fields populated")
-    print("=" * 60)
+    dup_titles = stats["dup_title_details"]
+    lines.append(f"  Duplicate Title+Author combinations: {len(dup_titles)}")
+    for title, author, count in dup_titles:
+        display_title = title if len(title) <= 40 else title[:37] + "..."
+        lines.append(f"    [{count}x] {display_title} — {author}")
+
+    lines.append("")
+    dup_isbns = stats["dup_isbn_details"]
+    lines.append(f"  Duplicate ISBNs: {len(dup_isbns)}")
+    for isbn, titles in dup_isbns:
+        lines.append(f"    ISBN {isbn}:")
+        for t in titles:
+            display_t = t if len(t) <= 50 else t[:47] + "..."
+            lines.append(f"      - {display_t}")
+
+    lines.append("")
+    lines.append("=" * 60)
+    lines.append("END OF REPORT")
+    lines.append("=" * 60)
+
+    return "\n".join(lines)
 
 
 def main():
@@ -482,6 +591,11 @@ def main():
         "--standardize-case",
         action="store_true",
         help="Standardize title case for book titles"
+    )
+    parser.add_argument(
+        "--report",
+        metavar="FILEPATH",
+        help="Write data quality report to a file (in addition to console)"
     )
 
     args = parser.parse_args()
@@ -515,8 +629,18 @@ def main():
     # Write output
     write_csv(cleaned_data, args.output)
 
-    # Print summary
-    print_summary(cleaned_data)
+    # Generate and display report
+    stats = collect_stats(cleaned_data, duplicate_isbns, duplicate_titles)
+    report = generate_report(stats)
+    print("\n" + report)
+
+    if args.report:
+        try:
+            with open(args.report, 'w', encoding='utf-8') as f:
+                f.write(report + "\n")
+            print(f"\n✓ Report written to {args.report}")
+        except Exception as e:
+            print(f"Error writing report: {e}", file=sys.stderr)
 
 
 if __name__ == "__main__":
