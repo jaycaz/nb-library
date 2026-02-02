@@ -7,7 +7,8 @@ Converts messy source CSV (79 columns) to clean schema (13 columns)
 import csv
 import sys
 import argparse
-from typing import Dict, List
+import re
+from typing import Dict, List, Tuple
 
 
 # Output column order (critical - must match schema)
@@ -55,11 +56,51 @@ def read_csv(filepath: str) -> List[Dict[str, str]]:
 
 
 def normalize_empty(value: str) -> str:
-    """Normalize None/empty/whitespace to empty string."""
+    """
+    Normalize None/empty/whitespace to empty string.
+    Strips leading and trailing whitespace from all fields.
+    """
     if value is None:
         return ""
     value = str(value).strip()
     return "" if value in ("", "None", "none", "NULL", "null") else value
+
+
+def validate_isbn(isbn: str) -> Tuple[bool, str]:
+    """
+    Validate and clean ISBN-10 or ISBN-13 format.
+
+    Args:
+        isbn: ISBN string to validate
+
+    Returns:
+        Tuple of (is_valid, cleaned_isbn)
+        - is_valid: True if ISBN format is correct
+        - cleaned_isbn: ISBN with hyphens removed, or original if invalid
+    """
+    isbn = normalize_empty(isbn)
+    if not isbn:
+        return (True, "")  # Empty ISBN is valid (will be flagged as missing elsewhere)
+
+    # Remove hyphens and spaces for validation
+    cleaned = re.sub(r'[\s\-]', '', isbn)
+
+    # Check ISBN-10 (10 digits, last char can be X)
+    if len(cleaned) == 10:
+        if re.match(r'^\d{9}[\dX]$', cleaned, re.IGNORECASE):
+            return (True, cleaned)
+        else:
+            return (False, isbn)
+
+    # Check ISBN-13 (13 digits)
+    elif len(cleaned) == 13:
+        if re.match(r'^\d{13}$', cleaned):
+            return (True, cleaned)
+        else:
+            return (False, isbn)
+
+    # Invalid length or format
+    return (False, isbn)
 
 
 def parse_int(value: str, min_val: int = None, max_val: int = None) -> str:
@@ -98,6 +139,66 @@ def truncate_summary(summary: str, max_len: int = 2000) -> str:
     return summary
 
 
+def standardize_title_case(title: str) -> str:
+    """
+    Standardize title to title case using smart capitalization rules.
+
+    Args:
+        title: Title string to standardize
+
+    Returns:
+        Title in standardized title case
+    """
+    title = normalize_empty(title)
+    if not title:
+        return title
+
+    # Articles, conjunctions, and short prepositions to keep lowercase
+    # (unless they're the first or last word)
+    lowercase_words = {
+        'a', 'an', 'and', 'as', 'at', 'but', 'by', 'for', 'in', 'of',
+        'on', 'or', 'the', 'to', 'via', 'with'
+    }
+
+    words = title.split()
+    result = []
+
+    for i, word in enumerate(words):
+        # Always capitalize first and last words
+        if i == 0 or i == len(words) - 1:
+            result.append(word.capitalize())
+        # Keep lowercase words lowercase if they're in the middle
+        elif word.lower() in lowercase_words:
+            result.append(word.lower())
+        # Capitalize all other words
+        else:
+            result.append(word.capitalize())
+
+    return ' '.join(result)
+
+
+def flag_issues(entry: Dict[str, str]) -> List[str]:
+    """
+    Check for data quality issues in a cleaned entry.
+
+    Args:
+        entry: Cleaned entry dictionary
+
+    Returns:
+        List of issue strings describing problems found
+    """
+    issues = []
+
+    # Required field checks
+    if not normalize_empty(entry.get("Title", "")):
+        issues.append("MISSING: Title")
+
+    if not normalize_empty(entry.get("Author", "")):
+        issues.append("MISSING: Author")
+
+    return issues
+
+
 def generate_notes(source_row: Dict[str, str], cleaned_row: Dict[str, str],
                    duplicate_isbns: set, duplicate_titles: set) -> str:
     """
@@ -114,12 +215,22 @@ def generate_notes(source_row: Dict[str, str], cleaned_row: Dict[str, str],
     """
     notes = []
 
+    # Check for required field issues using flag_issues()
+    field_issues = flag_issues(cleaned_row)
+    notes.extend(field_issues)
+
+    # Validate ISBN format
+    isbn = normalize_empty(source_row.get("ISBN", ""))
+    if isbn:
+        is_valid, _ = validate_isbn(isbn)
+        if not is_valid:
+            notes.append("INVALID ISBN")
+
     # Check for missing ISBN
     if cleaned_row["ISBN"] == "N/A":
         notes.append("Missing ISBN")
 
     # Check for duplicate ISBN
-    isbn = normalize_empty(source_row.get("ISBN", ""))
     if isbn and isbn in duplicate_isbns:
         notes.append("Duplicate ISBN - verify edition")
 
@@ -148,7 +259,7 @@ def generate_notes(source_row: Dict[str, str], cleaned_row: Dict[str, str],
 
 
 def clean_entry(row: Dict[str, str], duplicate_isbns: set,
-                duplicate_titles: set) -> Dict[str, str]:
+                duplicate_titles: set, standardize_case: bool = False) -> Dict[str, str]:
     """
     Map and clean a single book entry per schema.
 
@@ -156,6 +267,7 @@ def clean_entry(row: Dict[str, str], duplicate_isbns: set,
         row: Source row dictionary
         duplicate_isbns: Set of duplicate ISBNs
         duplicate_titles: Set of duplicate Title+Author combos
+        standardize_case: If True, standardize title to title case
 
     Returns:
         Cleaned row dictionary with 13 output columns
@@ -163,7 +275,11 @@ def clean_entry(row: Dict[str, str], duplicate_isbns: set,
     cleaned = {}
 
     # Direct copy fields with normalization
-    cleaned["Title"] = normalize_empty(row.get("Title", ""))
+    title = normalize_empty(row.get("Title", ""))
+    if standardize_case and title:
+        title = standardize_title_case(title)
+    cleaned["Title"] = title
+
     cleaned["Author"] = normalize_empty(row.get("Author", ""))
     cleaned["Genre"] = normalize_empty(row.get("Genre", ""))
     cleaned["Summary"] = truncate_summary(row.get("Summary", ""))
@@ -195,6 +311,34 @@ def clean_entry(row: Dict[str, str], duplicate_isbns: set,
     cleaned["Notes"] = generate_notes(row, cleaned, duplicate_isbns, duplicate_titles)
 
     return cleaned
+
+
+def check_duplicates(all_entries: List[Dict[str, str]]) -> List[List[Dict[str, str]]]:
+    """
+    Find and group duplicate entries by Title+Author combination.
+
+    Args:
+        all_entries: List of all book entry dictionaries
+
+    Returns:
+        List of duplicate groups, where each group is a list of entries
+        with the same Title+Author combination
+    """
+    title_author_groups = {}
+
+    for entry in all_entries:
+        title = normalize_empty(entry.get("Title", ""))
+        author = normalize_empty(entry.get("Author", ""))
+
+        if title and author:
+            key = f"{title}|{author}"
+            if key not in title_author_groups:
+                title_author_groups[key] = []
+            title_author_groups[key].append(entry)
+
+    # Return only groups with more than one entry (duplicates)
+    duplicate_groups = [group for group in title_author_groups.values() if len(group) > 1]
+    return duplicate_groups
 
 
 def find_duplicates(rows: List[Dict[str, str]]) -> tuple:
@@ -255,7 +399,10 @@ def print_summary(cleaned_data: List[Dict[str, str]]) -> None:
 
     # Count specific flag types
     flag_counts = {
+        "Missing Title": 0,
+        "Missing Author": 0,
         "Missing ISBN": 0,
+        "Invalid ISBN": 0,
         "Duplicate ISBN": 0,
         "Duplicate entry": 0,
         "Genre not classified": 0,
@@ -265,8 +412,14 @@ def print_summary(cleaned_data: List[Dict[str, str]]) -> None:
 
     for row in cleaned_data:
         notes = row["Notes"]
+        if "MISSING: Title" in notes:
+            flag_counts["Missing Title"] += 1
+        if "MISSING: Author" in notes:
+            flag_counts["Missing Author"] += 1
         if "Missing ISBN" in notes:
             flag_counts["Missing ISBN"] += 1
+        if "INVALID ISBN" in notes:
+            flag_counts["Invalid ISBN"] += 1
         if "Duplicate ISBN" in notes:
             flag_counts["Duplicate ISBN"] += 1
         if "Possible duplicate entry" in notes:
@@ -325,6 +478,11 @@ def main():
         type=int,
         help="Process only first N rows (for testing)"
     )
+    parser.add_argument(
+        "--standardize-case",
+        action="store_true",
+        help="Standardize title case for book titles"
+    )
 
     args = parser.parse_args()
 
@@ -347,9 +505,11 @@ def main():
 
     # Clean all entries
     print("✓ Cleaning entries...")
+    if args.standardize_case:
+        print("✓ Standardizing title case...")
     cleaned_data = []
     for row in source_data:
-        cleaned = clean_entry(row, duplicate_isbns, duplicate_titles)
+        cleaned = clean_entry(row, duplicate_isbns, duplicate_titles, args.standardize_case)
         cleaned_data.append(cleaned)
 
     # Write output
