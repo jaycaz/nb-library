@@ -1,1 +1,6 @@
 .subtask/
+
+# Generated CSV files from cleanup script
+csv-cleanup/library-clean.csv
+csv-cleanup/cleaned.csv
+csv-cleanup/test-sample.csv
