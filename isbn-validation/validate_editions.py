@@ -14,6 +14,7 @@ import time
 import argparse
 from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
+from urllib.parse import quote_plus
 
 
 def normalize_edition(edition_str):
@@ -280,6 +281,337 @@ def validate_book(book, api_key=None, dry_run=False):
     return result
 
 
+def search_correct_isbn(title, author, edition, api_key=None):
+    """
+    Search for the correct ISBN for a book given title, author, and edition.
+    Returns a dict with suggested ISBN, source, confidence, and notes.
+    """
+    result = {
+        'suggested_isbn': '',
+        'source': '',
+        'confidence': 'low',
+        'notes': ''
+    }
+
+    # Search Google Books
+    query = f"intitle:{title}"
+    if author:
+        # Extract first author's last name for better search
+        author_part = author.split(',')[0].strip() if ',' in author else author.split()[0] if author.split() else author
+        query += f"+inauthor:{author_part}"
+
+    # URL encode the query
+    encoded_query = quote_plus(query)
+    url = f"https://www.googleapis.com/books/v1/volumes?q={encoded_query}"
+    if api_key:
+        url += f"&key={api_key}"
+
+    try:
+        request = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+        with urlopen(request, timeout=10) as response:
+            data = json.loads(response.read().decode('utf-8'))
+
+            if not data.get('items'):
+                result['notes'] = 'No results found in Google Books'
+                return result
+
+            # Normalize the target edition for comparison
+            target_edition = normalize_edition(edition)
+
+            # Search through results for matching edition
+            for item in data.get('items', [])[:10]:  # Check first 10 results
+                volume_info = item.get('volumeInfo', {})
+
+                # Extract edition from this result
+                api_edition = None
+                for text in [volume_info.get('title'), volume_info.get('subtitle'),
+                             volume_info.get('description')]:
+                    api_edition = extract_edition_from_text(text)
+                    if api_edition:
+                        break
+
+                # Check if title is similar
+                api_title = volume_info.get('title', '').lower()
+                search_title = title.lower()
+                title_match = search_title in api_title or api_title in search_title
+
+                # Extract ISBNs from this result
+                isbns = []
+                if 'industryIdentifiers' in volume_info:
+                    for identifier in volume_info['industryIdentifiers']:
+                        if identifier['type'] in ['ISBN_10', 'ISBN_13']:
+                            isbns.append(identifier['identifier'])
+
+                if not isbns:
+                    continue
+
+                # Determine confidence
+                if api_edition == target_edition and title_match:
+                    result['suggested_isbn'] = isbns[0]
+                    result['source'] = 'google'
+                    result['confidence'] = 'high'
+                    result['notes'] = f"Exact match: edition {api_edition}, title '{volume_info.get('title')}'"
+                    return result
+                elif title_match and api_edition:
+                    if not result['suggested_isbn']:  # Only set if we haven't found anything better
+                        result['suggested_isbn'] = isbns[0]
+                        result['source'] = 'google'
+                        result['confidence'] = 'medium'
+                        result['notes'] = f"Title match with edition {api_edition} (looking for {target_edition})"
+                elif title_match:
+                    if not result['suggested_isbn']:
+                        result['suggested_isbn'] = isbns[0]
+                        result['source'] = 'google'
+                        result['confidence'] = 'low'
+                        result['notes'] = f"Title match but edition unclear from '{volume_info.get('title')}'"
+
+            if not result['suggested_isbn']:
+                result['notes'] = f"Found results but no edition match for edition {target_edition}"
+
+    except (HTTPError, URLError) as e:
+        result['notes'] = f"Error searching Google Books: {e}"
+
+    return result
+
+
+def search_correct_isbn_openlibrary(title, author, edition):
+    """
+    Search Open Library for the correct ISBN.
+    Returns a dict with suggested ISBN, source, confidence, and notes.
+    """
+    result = {
+        'suggested_isbn': '',
+        'source': '',
+        'confidence': 'low',
+        'notes': ''
+    }
+
+    # Search Open Library
+    encoded_title = quote_plus(title)
+    url = f"https://openlibrary.org/search.json?title={encoded_title}"
+    if author:
+        encoded_author = quote_plus(author)
+        url += f"&author={encoded_author}"
+
+    try:
+        request = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+        with urlopen(request, timeout=10) as response:
+            data = json.loads(response.read().decode('utf-8'))
+
+            if not data.get('docs'):
+                result['notes'] = 'No results found in Open Library'
+                return result
+
+            target_edition = normalize_edition(edition)
+
+            # Check first few results
+            for doc in data.get('docs', [])[:5]:
+                # Get work key to fetch editions
+                work_key = doc.get('key')
+                if not work_key:
+                    continue
+
+                # Fetch editions for this work
+                editions_url = f"https://openlibrary.org{work_key}/editions.json"
+                try:
+                    editions_request = Request(editions_url, headers={'User-Agent': 'Mozilla/5.0'})
+                    with urlopen(editions_request, timeout=10) as editions_response:
+                        editions_data = json.loads(editions_response.read().decode('utf-8'))
+
+                        for ed in editions_data.get('entries', [])[:10]:
+                            # Extract edition
+                            api_edition = None
+                            if 'edition_name' in ed:
+                                api_edition = normalize_edition(ed['edition_name'])
+
+                            # Extract ISBNs
+                            isbns = []
+                            for key in ['isbn_13', 'isbn_10']:
+                                if key in ed:
+                                    isbns.extend(ed[key])
+
+                            if not isbns:
+                                continue
+
+                            # Check for match
+                            if api_edition == target_edition:
+                                result['suggested_isbn'] = isbns[0]
+                                result['source'] = 'openlibrary'
+                                result['confidence'] = 'high'
+                                result['notes'] = f"Exact match: edition {api_edition}"
+                                return result
+                            elif api_edition and not result['suggested_isbn']:
+                                result['suggested_isbn'] = isbns[0]
+                                result['source'] = 'openlibrary'
+                                result['confidence'] = 'medium'
+                                result['notes'] = f"Found edition {api_edition} (looking for {target_edition})"
+
+                except (HTTPError, URLError):
+                    continue
+
+            if not result['suggested_isbn']:
+                result['notes'] = f"Found work but no edition match for edition {target_edition}"
+
+    except (HTTPError, URLError) as e:
+        result['notes'] = f"Error searching Open Library: {e}"
+
+    return result
+
+
+def repair_mismatches(results_file, output_file, api_key=None):
+    """
+    Read mismatch results and search for correct ISBNs.
+    Outputs repair suggestions to a CSV file.
+    """
+    print(f"Reading mismatches from {results_file}...")
+
+    with open(results_file, 'r', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        mismatches = [row for row in reader if row['Match Status'] == 'mismatch']
+
+    print(f"Found {len(mismatches)} mismatches to repair")
+
+    suggestions = []
+
+    for i, mismatch in enumerate(mismatches, 1):
+        print(f"\n[{i}/{len(mismatches)}] {mismatch['Title']}")
+        print(f"  Current: Edition {mismatch['CSV Edition']}, ISBN {mismatch['CSV ISBN']}")
+        print(f"  API says: Edition {mismatch['API Edition']}")
+        print(f"  Searching for correct ISBN...")
+
+        # Try Google Books first
+        result = search_correct_isbn(
+            mismatch['Title'],
+            mismatch['Author'],
+            mismatch['CSV Edition'],
+            api_key
+        )
+
+        # If no good result from Google Books, try Open Library
+        if result['confidence'] == 'low' or not result['suggested_isbn']:
+            print(f"  Trying Open Library...")
+            ol_result = search_correct_isbn_openlibrary(
+                mismatch['Title'],
+                mismatch['Author'],
+                mismatch['CSV Edition']
+            )
+
+            # Use Open Library result if it's better
+            if ol_result['confidence'] == 'high' or (ol_result['suggested_isbn'] and not result['suggested_isbn']):
+                result = ol_result
+
+        suggestion = {
+            'Title': mismatch['Title'],
+            'Author': mismatch['Author'],
+            'Current ISBN': mismatch['CSV ISBN'],
+            'Current Edition': mismatch['CSV Edition'],
+            'API Found Edition': mismatch['API Edition'],
+            'Suggested ISBN': result['suggested_isbn'],
+            'Suggested ISBN Source': result['source'],
+            'Confidence': result['confidence'],
+            'Notes': result['notes']
+        }
+
+        suggestions.append(suggestion)
+
+        print(f"  Result: {result['confidence']} confidence")
+        if result['suggested_isbn']:
+            print(f"  Suggested ISBN: {result['suggested_isbn']} (from {result['source']})")
+        print(f"  Notes: {result['notes']}")
+
+        # Rate limiting
+        if i < len(mismatches):
+            time.sleep(1)
+
+    # Write suggestions to CSV
+    print(f"\nWriting repair suggestions to {output_file}...")
+    fieldnames = [
+        'Title', 'Author', 'Current ISBN', 'Current Edition', 'API Found Edition',
+        'Suggested ISBN', 'Suggested ISBN Source', 'Confidence', 'Notes'
+    ]
+
+    with open(output_file, 'w', encoding='utf-8', newline='') as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(suggestions)
+
+    # Summary
+    print("\n=== REPAIR SUMMARY ===")
+    total = len(suggestions)
+    high_conf = sum(1 for s in suggestions if s['Confidence'] == 'high')
+    medium_conf = sum(1 for s in suggestions if s['Confidence'] == 'medium')
+    low_conf = sum(1 for s in suggestions if s['Confidence'] == 'low')
+
+    print(f"Total mismatches: {total}")
+    print(f"High confidence repairs: {high_conf}")
+    print(f"Medium confidence repairs: {medium_conf}")
+    print(f"Low confidence repairs: {low_conf}")
+    print(f"\nSuggestions saved to {output_file}")
+
+
+def apply_repairs(suggestions_file, data_file):
+    """
+    Apply high-confidence repair suggestions to data.csv.
+    Creates a backup first.
+    """
+    print(f"Reading repair suggestions from {suggestions_file}...")
+
+    with open(suggestions_file, 'r', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        suggestions = [row for row in reader if row['Confidence'] == 'high' and row['Suggested ISBN']]
+
+    print(f"Found {len(suggestions)} high-confidence repairs to apply")
+
+    if not suggestions:
+        print("No high-confidence repairs to apply.")
+        return
+
+    # Create backup
+    backup_file = f"{data_file}.bak"
+    print(f"Creating backup: {backup_file}")
+
+    with open(data_file, 'r', encoding='utf-8') as f:
+        backup_content = f.read()
+
+    with open(backup_file, 'w', encoding='utf-8') as f:
+        f.write(backup_content)
+
+    # Read data.csv
+    print(f"Reading {data_file}...")
+    with open(data_file, 'r', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        fieldnames = reader.fieldnames
+        books = list(reader)
+
+    # Apply repairs
+    changes_made = 0
+    for suggestion in suggestions:
+        for book in books:
+            # Match by title and current ISBN
+            if (book['Title'] == suggestion['Title'] and
+                book['ISBN'] == suggestion['Current ISBN']):
+                old_isbn = book['ISBN']
+                book['ISBN'] = suggestion['Suggested ISBN']
+                print(f"  Updated: {book['Title']}")
+                print(f"    {old_isbn} -> {suggestion['Suggested ISBN']}")
+                changes_made += 1
+                break
+
+    # Write updated data.csv
+    if changes_made > 0:
+        print(f"\nWriting updated data to {data_file}...")
+        with open(data_file, 'w', encoding='utf-8', newline='') as f:
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(books)
+
+        print(f"\n=== APPLY SUMMARY ===")
+        print(f"Total changes applied: {changes_made}")
+        print(f"Backup saved to: {backup_file}")
+    else:
+        print("\nNo changes were made.")
+
+
 def main():
     parser = argparse.ArgumentParser(
         description='Validate ISBN editions against Google Books and Open Library APIs'
@@ -310,9 +642,45 @@ def main():
         default='isbn-validation/edition_check_results.csv',
         help='Output CSV file (default: isbn-validation/edition_check_results.csv)'
     )
+    parser.add_argument(
+        '--repair',
+        action='store_true',
+        help='Search for correct ISBNs for mismatched editions'
+    )
+    parser.add_argument(
+        '--repair-input',
+        default='isbn-validation/edition_check_results.csv',
+        help='Input file with mismatch results for repair (default: isbn-validation/edition_check_results.csv)'
+    )
+    parser.add_argument(
+        '--repair-output',
+        default='isbn-validation/repair_suggestions.csv',
+        help='Output file for repair suggestions (default: isbn-validation/repair_suggestions.csv)'
+    )
+    parser.add_argument(
+        '--apply',
+        action='store_true',
+        help='Apply high-confidence repair suggestions to data.csv'
+    )
+    parser.add_argument(
+        '--suggestions',
+        default='isbn-validation/repair_suggestions.csv',
+        help='Repair suggestions file for --apply (default: isbn-validation/repair_suggestions.csv)'
+    )
 
     args = parser.parse_args()
 
+    # Handle --apply mode
+    if args.apply:
+        apply_repairs(args.suggestions, args.input)
+        return
+
+    # Handle --repair mode
+    if args.repair:
+        repair_mismatches(args.repair_input, args.repair_output, args.api_key)
+        return
+
+    # Normal validation mode
     # Read input CSV
     print(f"Reading {args.input}...")
     with open(args.input, 'r', encoding='utf-8') as f:

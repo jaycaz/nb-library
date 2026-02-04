@@ -1,0 +1,15 @@
+Title,Author,Current ISBN,Current Edition,API Found Edition,Suggested ISBN,Suggested ISBN Source,Confidence,Notes
+A First Course in Probability,Sheldon Ross,9780321926678,Seventh,9,9780321926678,google,medium,Title match with edition 9 (looking for 7)
+Analytic Trigonometry with Applications,"Raymond A. Barnett,Karl E. Byleen,Michael R. Ziegler",9781118129296,Eighth,11,0534004288,google,medium,Title match with edition 9 (looking for 8)
+Boundary Value Problems,David L. Powers,9780080470795,Third,5,0155055356,openlibrary,high,Exact match: edition 3
+Building Construction Illustrated,Francis D. K. Ching,9780442215323,Third,4,0471358983,google,high,"Exact match: edition 3, title 'Building Construction Illustrated'"
+Curves and Surfaces for Computer-Aided Geometric Design,Gerald Farin,9781483296999,Second,3,9781483296999,google,medium,Title match with edition 3 (looking for 2)
+DNS and BIND,"Paul Albitz,Cricket Liu",9780596001582,Third,4,1565925122,openlibrary,high,Exact match: edition 3
+DNS and BIND,"Paul Albitz,Cricket Liu",9780596001582,Second,4,9781565922365,openlibrary,high,Exact match: edition 2
+Elementary Differential Equations,"William E. Boyce,Douglas B. Meade,Richard C. DiPrima",9781119443636,Sixth,11,9781119443636,google,medium,Title match with edition 11 (looking for 6)
+Elementary Differential Equations and Boundary Value Problems,"William E. Boyce,Douglas B. Meade,Richard C. DiPrima",9781119443766,Sixth,11,9781119443766,google,medium,Title match with edition 11 (looking for 6)
+Elementary Differential Equations and Boundary Value Problems,"William E. Boyce,Richard C. DiPrima",9781119443766,Ninth,11,9781119443766,google,medium,Title match with edition 11 (looking for 9)
+"Fundamentals of Engineering Thermodynamics, Student Problem Set Supplement","Michael J. Moran,Howard N. Shapiro",9780470643532,Fifth,6,0470643536,google,medium,Title match with edition 6 (looking for 5)
+High Performance MySQL,"Baron Schwartz,Peter Zaitsev,Vadim Tkachenko",9781449332495,Second,3,9780596554750,google,high,"Exact match: edition 2, title 'High Performance MySQL'"
+John E. Freund's Mathematical Statistics with Applications (Classic Version),"Irwin Miller,Marylees Miller",9780134995373,Fifth,8,9781292037639,google,medium,Title match with edition 8 (looking for 5)
+Meggs' History of Graphic Design,"Philip B. Meggs,Alston W. Purvis",9781118772058,Second,6,9781119136200,google,medium,Title match with edition 6 (looking for 2)
