@@ -1,0 +1,50 @@
+Title,Author,CSV Edition,CSV ISBN,API Title,API Published Date,API ISBNs,API Edition,Source,Match Status
+A First Course in Probability,Sheldon Ross,Seventh,9780321926678,A First Course in Probability,2015-12-03,"0321926676, 9780321926678",9,google,mismatch
+A Guide to the SQL Standard,"C. J. Date,Hugh Darwen",Fourth,9780201964264,A Guide to the SQL Standard - A User's Guide to the Standard Database Language SQL,1997,"0201964260, 9780201964264",,google,uncertain
+Abstract Algebra,"David Steven Dummit,Richard M. Foote",Second,9780130047717,Abstract Algebra,1991,"0130047716, 9780130047717",,google,uncertain
+Advanced Programming in the UNIX Environment,"W. Richard Stevens,Stephen A. Rago",Third,9780321637734,Advanced Programming in the UNIX Environment,2013,"0321637739, 9780321637734",3,google,match
+Analytic Trigonometry with Applications,"Raymond A. Barnett,Karl E. Byleen,Michael R. Ziegler",Eighth,9781118129296,Analytic Trigonometry with Applications,2011-11-22,"1118129296, 9781118129296",11,google,mismatch
+Beginning Algebra,K. Elayn Martin-Gay,Fourth,9780131858060,Beginning Algebra,2004-11,"0131858068, 9780131858060",,google,uncertain
+Boundary Value Problems,David L. Powers,Third,9780080470795,Boundary Value Problems - and Partial Differential Equations,2005-10-19,"0080470793, 9780080470795",5,google,mismatch
+Building Construction Illustrated,Francis D. K. Ching,Third,9780442215323,Building Construction Illustrated,1975,"0442215320, 9780442215323",4,google,mismatch
+C]+ Plus Data Structures (Revised),Nell B. Dale,Fourth,9780763741587,C]+ Plus Data Structures (Revised),2007,"0763741582, 9780763741587",4,google,match
+C++ Plus Data Structures,Nell B. Dale,Fourth,9780763704810,C++ Plus Data Structures,2003,"0763704814, 9780763704810",,google,uncertain
+Calculus and Analytic Geometry,"Charles Henry Edwards,David E. Penney",Third,9780131112049,Calculus and Analytic Geometry,1990,"013111204X, 9780131112049",,google,uncertain
+Classical Electrodynamics,John David Jackson,Third,9781119770763,"Classical Electrodynamics, International Adaptation",2021-09-22,"1119770769, 9781119770763",3,google,match
+Complex Variables and Applications,"James Ward Brown,Ruel Vance Churchill",Sixth,9780071140546,Complex Variables and Applications,1996,"0071140549, 9780071140546",,google,uncertain
+Contemporary College,Edwin Jones,Second,9780201629613,Contemporary College,1992-11,"0201629615, 9780201629613",,google,uncertain
+"Core Java, Volume II--Advanced Features",Cay S. Horstmann,Tenth,9780134177892,"Core Java, Volume II--Advanced Features",2016-12-06,"0134177894, 9780134177892",10,google,match
+Curves and Surfaces for Computer-Aided Geometric Design,Gerald Farin,Second,9781483296999,Curves and Surfaces for Computer-Aided Geometric Design - A Practical Guide,2014-06-28,"1483296997, 9781483296999",3,google,mismatch
+Data Abstraction and Problem Solving with C++,Frank M. Carrano,Fourth,9780321247254,Data Abstraction and Problem Solving with C++ - Walls and Mirrors,2005,"0321247256, 9780321247254",,google,uncertain
+Data Abstraction and Problem Solving with C++,"Frank M. Carrano,Paul Helman,Robert Veroff",Second,9780201874020,Data Abstraction and Problem Solving with C++ - Walls and Mirrors,1998,"0201874024, 9780201874020",,google,uncertain
+Discrete Mathematics with Applications,Susanna S. Epp,Second,9780357121467,Discrete Mathematics with Applications,2019,"0357121465, 9780357121467",,google,uncertain
+DNS and BIND,"Paul Albitz,Cricket Liu",Third,9780596001582,DNS and BIND,2001,"0596001584, 9780596001582",4,google,mismatch
+DNS and BIND,"Paul Albitz,Cricket Liu",Second,9780596001582,DNS and BIND,2001,"0596001584, 9780596001582",4,google,mismatch
+Educational Research,John W. Creswell,Fourth,9780131367395,"Educational Research - Planning, Conducting, and Evaluating Quantitative and Qualitative Research",2012,"0131367390, 9780131367395",,google,uncertain
+Electronic Principles,Albert Malvino,Second,9780028028330,Electronic Principles,1998-02-24,"0028028333, 9780028028330",,google,uncertain
+Elementary Differential Equations,"William E. Boyce,Douglas B. Meade,Richard C. DiPrima",Sixth,9781119443636,Elementary Differential Equations,2017-08-14,"1119443636, 9781119443636",11,google,mismatch
+Elementary Differential Equations and Boundary Value Problems,"William E. Boyce,Douglas B. Meade,Richard C. DiPrima",Sixth,9781119443766,Elementary Differential Equations and Boundary Value Problems,2017-08-21,"1119443768, 9781119443766",11,google,mismatch
+Elementary Differential Equations and Boundary Value Problems,"William E. Boyce,Richard C. DiPrima",Ninth,9781119443766,Elementary Differential Equations and Boundary Value Problems,2017-08-21,"1119443768, 9781119443766",11,google,mismatch
+Elementary Principles of Chemical Processes,"Richard M. Felder,Ronald W. Rousseau",Second,9780471873242,Elementary Principles of Chemical Processes,1986-03-10,"0471873241, 9780471873242",,google,uncertain
+Elementary Statistics,"Allan G. Bluman,Gerry Moultine",Fourth,9780072431711,Elementary Statistics - Minitab Manual,2000-08,"0072431717, 9780072431711",,google,uncertain
+Essentials of Heat Transfer,Massoud Kaviany,Third,9781107012400,"Essentials of Heat Transfer - Principles, Materials, and Applications",2011-08,"1107012406, 9781107012400",,google,uncertain
+Fluid Power with Applications,Anthony Esposito,Fifth,9780137724680,Fluid Power with Applications,1994,"0137724683, 9780137724680",,google,uncertain
+"Fundamentals of Engineering Thermodynamics, Student Problem Set Supplement","Michael J. Moran,Howard N. Shapiro",Fifth,9780470643532,"Fundamentals of Engineering Thermodynamics, Student Problem Set Supplement",2010-03-22,"0470643536, 9780470643532",6,google,mismatch
+High Performance MySQL,"Baron Schwartz,Peter Zaitsev,Vadim Tkachenko",Second,9781449332495,"High Performance MySQL - Optimization, Backups, and Replication",2012-03-05,"1449332498, 9781449332495",3,google,mismatch
+How To Form A Nonprofit Corporation,Anthony Mancuso,Tenth,9781413303483,How To Form A Nonprofit Corporation,2005-07-30,"141330348X, 9781413303483",,google,uncertain
+Java Software Solutions,"John Lewis,William Loftus",Second,9780321322036,Java Software Solutions - Foundations of Program Design,2005,"0321322037, 9780321322036",,google,uncertain
+John E. Freund's Mathematical Statistics with Applications (Classic Version),"Irwin Miller,Marylees Miller",Fifth,9780134995373,John E. Freund's Mathematical Statistics with Applications (Classic Version),2018-03-15,"0134995376, 9780134995373",8,google,mismatch
+Mastering the Instructional Design Process,"William J. Rothwell,H. C. Kazanas",Second,9781555424275,Mastering the Instructional Design Process - A Systematic Approach,1992,"1555424279, 9781555424275",,google,uncertain
+Mathematical Reasoning,Theodore A. Sundstrom,Second,9780130618153,Mathematical Reasoning - Writing and Proof,2003,"0130618152, 9780130618153",,google,uncertain
+Medieval Europe,Charles Warren Hollister,Seventh,9780070296374,Medieval Europe - A Short History,1994,"0070296375, 9780070296374",,google,uncertain
+Meggs' History of Graphic Design,"Philip B. Meggs,Alston W. Purvis",Second,9781118772058,Meggs' History of Graphic Design,2016-05-16,"1118772059, 9781118772058",6,google,mismatch
+"Molecular Cloning, Vol 3","Joseph Sambrook,E. F. Fritsch,Tom Maniatis",Second,9780879693732,Molecular Cloning - A Laboratory Manual,1989,"0879693738, 9780879693732",,google,uncertain
+Operating Systems,William Stallings,Fourth,9780136006329,Operating Systems - Internals and Design Principles,2009,"0136006329, 9780136006329",,google,uncertain
+Probability and Statistics for Engineering and the Sciences,Jay L. Devore,Fifth,9780534372811,Probability and Statistics for Engineering and the Sciences,2000,"0534372813, 9780534372811",,google,uncertain
+Sams Teach Yourself C in 21 Days,"Bradley L. Jones,Bradley Jones,Peter G. Aitken",Fifth,9780672324482,Sams Teach Yourself C in 21 Days,2003,"0672324482, 9780672324482",,google,uncertain
+"Schaum's Outline of Differential Equations, 2ed",Richard Bronson,Second,9780071612951,"Schaum's Outline of Differential Equations, 3ed",2009-03-10,"0071612955, 9780071612951",,google,uncertain
+Start Your Own Business,Rieva Lesonsky,Second,9781891984211,Start Your Own Business - The Only Start-up Book You'll Ever Need,2001,"1891984217, 9781891984211",,google,uncertain
+The Complete FreeBSD,Greg Lehey,Fourth,9780596005160,The Complete FreeBSD - Documentation from the Source,2003-04-29,"0596005164, 9780596005160",4,google,match
+The Definitive Guide to GCC,"Kurt Wall,William von Hagen",Second,9781430207047,The Definitive Guide to GCC,2008-01-01,"1430207043, 9781430207047",,google,uncertain
+Trigonometry,"Margaret L. Lial,Hornsby,Schneider",Eighth,9780321057600,Trigonometry,2000-09,"0321057600, 9780321057600",,google,uncertain
+Vector Mechanics for Engineers,"Ferdinand Pierre Beer,Brian P. Self,Elwood Russell Johnston,Phillip J. Cornwell",Tenth,9780077687458,Vector Mechanics for Engineers - Dynamics,2016,"0077687450, 9780077687458",,google,uncertain
