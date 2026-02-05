@@ -50,6 +50,57 @@ npm run build
 
 The built files will be in the `dist/` directory, ready to deploy to any static hosting service.
 
+## Docker Deployment
+
+### Quick Start with Docker Compose
+
+The easiest way to run the app in production mode:
+
+```bash
+docker-compose up
+```
+
+Access the app at http://localhost:8080
+
+To run in detached mode:
+```bash
+docker-compose up -d
+```
+
+To stop:
+```bash
+docker-compose down
+```
+
+### Manual Docker Build
+
+Build the Docker image:
+```bash
+docker build -t noisebridge-library .
+```
+
+Run the container:
+```bash
+docker run -p 8080:80 noisebridge-library
+```
+
+Access the app at http://localhost:8080
+
+### Docker Image Details
+
+- **Multi-stage build**: Uses `node:18-alpine` for building and `nginx:alpine` for serving
+- **CSV data bundled**: The cleaned library catalog is baked into the image
+- **Size optimized**: Multi-stage build keeps the final image small
+- **Health checks**: Includes a `/health` endpoint for monitoring
+- **Production ready**: Gzip compression, security headers, and static asset caching
+
+### Deploying to Noisebridge
+
+1. Build the image on the target server
+2. Run with docker-compose or as a standalone container
+3. Configure reverse proxy (nginx, Caddy, etc.) if needed
+4. Set up restart policies for automatic recovery
+
 ## Project Structure
 
 ```
