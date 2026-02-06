@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 CSV Cleanup Script for Noisebridge Library
-Converts messy source CSV (79 columns) to clean schema (13 columns)
+Converts messy source CSV (79 columns) to clean schema (14 columns)
 """
 
 import csv
@@ -15,6 +15,7 @@ from typing import Dict, List, Tuple
 OUTPUT_COLUMNS = [
     "Title",
     "Author",
+    "Series",
     "ISBN",
     "Publisher",
     "Year",
@@ -281,6 +282,7 @@ def clean_entry(row: Dict[str, str], duplicate_isbns: set,
     cleaned["Title"] = title
 
     cleaned["Author"] = normalize_empty(row.get("Author", ""))
+    cleaned["Series"] = normalize_empty(row.get("Series", ""))
     cleaned["Genre"] = normalize_empty(row.get("Genre", ""))
     cleaned["Summary"] = truncate_summary(row.get("Summary", ""))
     cleaned["Google VolumeID"] = normalize_empty(row.get("Google VolumeID", ""))
