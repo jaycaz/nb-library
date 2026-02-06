@@ -39,7 +39,11 @@ const BookCard = ({ book }) => {
       </div>
       <div className="book-info">
         <h3 className="book-title">{book.Title || 'Untitled'}</h3>
-        {book.Author && <p className="book-author">{book.Author}</p>}
+        {(book.Author && book.Author !== 'N/A') ? (
+          <p className="book-author">by {book.Author}</p>
+        ) : book.Series ? (
+          <p className="book-series">{book.Series}</p>
+        ) : null}
         <div className="book-meta">
           {book.Genre && (
             <span className="book-genre">{book.Genre}</span>
