@@ -5,11 +5,11 @@
   # Build command (runs from base directory)
   command = "npm ci && npm run build"
 
-  # Directory to deploy (relative to repository root)
-  publish = "web-app/dist"
+  # Directory to deploy (relative to base directory)
+  publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "20"
 
 # Deploy preview settings
 [context.deploy-preview]
