@@ -111,3 +111,26 @@ Examples of experiments that might be built here:
 - **Offline-Friendly**: Hackerspace internet may be unreliable
 - **Physical Integration**: Consider how digital tools connect to physical book locations
 - **Device Flexibility**: Native apps can be considered but members will have a wide range of devices and setups. A device-agnostic approach has to be the baseline.
+
+## Database Update Workflow
+
+When `data.csv` is updated (books added, metadata changed, etc.), the web app database must be regenerated. This is automated via the `update-web-db.sh` script.
+
+### Quick Update
+
+```bash
+./update-web-db.sh --skip-validation
+```
+
+This will:
+1. Run CSV cleanup (converts 73 columns → 13 columns)
+2. Copy cleaned CSV to `web-app/public/cleaned_output.csv`
+3. Complete in ~5-10 seconds
+
+### Full Documentation
+
+See [README-UPDATE-DB.md](README-UPDATE-DB.md) for:
+- Complete usage guide
+- All available options
+- Testing procedures
+- Troubleshooting tips
