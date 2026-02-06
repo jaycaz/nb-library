@@ -1,0 +1,20 @@
+[build]
+  # The web app is in the web-app/ subdirectory
+  base = "web-app"
+
+  # Build command (runs from base directory)
+  command = "npm ci && npm run build"
+
+  # Directory to deploy (relative to repository root)
+  publish = "web-app/dist"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# Deploy preview settings
+[context.deploy-preview]
+  command = "npm ci && npm run build"
+
+# Production settings (when merged to main)
+[context.production]
+  command = "npm ci && npm run build"
