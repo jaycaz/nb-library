@@ -1,10 +1,10 @@
 [build]
   # The web app is in the web-app/ subdirectory
   base = "web-app"
-  
+
   # Build command (runs from base directory)
   command = "npm ci && npm run build"
-  
+
   # Directory to deploy (relative to repository root)
   publish = "web-app/dist"
 
