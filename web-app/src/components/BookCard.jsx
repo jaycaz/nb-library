@@ -1,12 +1,34 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './BookCard.css';
 
 const BookCard = ({ book }) => {
   const [imageError, setImageError] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
 
   const handleImageError = () => {
     setImageError(true);
   };
+
+  const handleMouseEnter = () => setShowTooltip(true);
+  const handleMouseLeave = () => setShowTooltip(false);
+  const handleClick = (e) => {
+    e.stopPropagation();
+    setShowTooltip(!showTooltip);
+  };
+
+  // Click-outside detection for mobile
+  useEffect(() => {
+    if (!showTooltip) return;
+
+    const handleClickOutside = (e) => {
+      if (!e.target.closest('.placeholder-indicator')) {
+        setShowTooltip(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [showTooltip]);
 
   const coverUrl = book['Cover URL'];
   const hasCover = coverUrl && !imageError && coverUrl !== 'N/A';
@@ -15,12 +37,37 @@ const BookCard = ({ book }) => {
     <div className="book-card">
       <div className="book-cover">
         {hasCover ? (
-          <img
-            src={coverUrl}
-            alt={`Cover of ${book.Title}`}
-            onError={handleImageError}
-            loading="lazy"
-          />
+          <>
+            <img
+              src={coverUrl}
+              alt={`Cover of ${book.Title}`}
+              onError={handleImageError}
+              loading="lazy"
+            />
+            {book['Placeholder Cover'] === 'yes' && (
+              <div
+                className="placeholder-indicator"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                onClick={handleClick}
+                role="tooltip"
+                aria-label="Cover image information"
+              >
+                <div className="info-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="16" x2="12" y2="12"/>
+                    <line x1="12" y1="8" x2="12.01" y2="8"/>
+                  </svg>
+                </div>
+                {showTooltip && (
+                  <div className="tooltip-bubble">
+                    Cover image from Google Books - actual book may look different
+                  </div>
+                )}
+              </div>
+            )}
+          </>
         ) : (
           <div className="book-cover-placeholder">
             <svg

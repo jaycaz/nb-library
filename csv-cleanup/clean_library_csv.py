@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 CSV Cleanup Script for Noisebridge Library
-Converts messy source CSV (79 columns) to clean schema (14 columns)
+Converts messy source CSV (79 columns) to clean schema (15 columns)
 """
 
 import csv
@@ -23,6 +23,7 @@ OUTPUT_COLUMNS = [
     "Pages",
     "Shelf Location",
     "Cover URL",
+    "Placeholder Cover",
     "Summary",
     "Google VolumeID",
     "Loaned To",
@@ -271,7 +272,7 @@ def clean_entry(row: Dict[str, str], duplicate_isbns: set,
         standardize_case: If True, standardize title to title case
 
     Returns:
-        Cleaned row dictionary with 13 output columns
+        Cleaned row dictionary with 15 output columns
     """
     cleaned = {}
 
@@ -305,6 +306,9 @@ def clean_entry(row: Dict[str, str], duplicate_isbns: set,
     # Cover URL with validation
     cover_url = normalize_empty(row.get("Uploaded Image URL", ""))
     cleaned["Cover URL"] = cover_url if is_valid_url(cover_url) else ""
+
+    # Placeholder Cover flag
+    cleaned["Placeholder Cover"] = normalize_empty(row.get("Placeholder Cover", ""))
 
     # Empty/future fields
     cleaned["Loaned To"] = ""
@@ -572,7 +576,7 @@ def generate_report(stats: Dict) -> str:
 def main():
     """Main script orchestration."""
     parser = argparse.ArgumentParser(
-        description="Clean Noisebridge library CSV from 79 to 13 columns"
+        description="Clean Noisebridge library CSV from 79 to 15 columns"
     )
     parser.add_argument(
         "--input",
