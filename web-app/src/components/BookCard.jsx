@@ -9,11 +9,24 @@ const BookCard = ({ book }) => {
     setImageError(true);
   };
 
-  const handleMouseEnter = () => setShowTooltip(true);
-  const handleMouseLeave = () => setShowTooltip(false);
+  const handleMouseEnter = () => {
+    // Only trigger on desktop (non-touch devices)
+    if (!('ontouchstart' in window)) {
+      setShowTooltip(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    // Only trigger on desktop (non-touch devices)
+    if (!('ontouchstart' in window)) {
+      setShowTooltip(false);
+    }
+  };
+
   const handleClick = (e) => {
+    e.preventDefault();
     e.stopPropagation();
-    setShowTooltip(!showTooltip);
+    setShowTooltip(prev => !prev);
   };
 
   // Click-outside detection for mobile
@@ -26,8 +39,17 @@ const BookCard = ({ book }) => {
       }
     };
 
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
+    // Delay to prevent immediate close on same click that opened it
+    const timer = setTimeout(() => {
+      document.addEventListener('click', handleClickOutside);
+      document.addEventListener('touchstart', handleClickOutside);
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
   }, [showTooltip]);
 
   const coverUrl = book['Cover URL'];
@@ -54,10 +76,8 @@ const BookCard = ({ book }) => {
                 aria-label="Cover image information"
               >
                 <div className="info-icon">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <circle cx="12" cy="12" r="10"/>
-                    <line x1="12" y1="16" x2="12" y2="12"/>
-                    <line x1="12" y1="8" x2="12.01" y2="8"/>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"/>
                   </svg>
                 </div>
                 {showTooltip && (

@@ -47,23 +47,32 @@
   right: 0.5rem;
   z-index: 10;
   cursor: pointer;
+  /* Increase tap target size for mobile */
+  padding: 0.5rem;
+  margin: -0.5rem;
 }
 
 .info-icon {
-  width: 1.5rem;
-  height: 1.5rem;
-  background: rgba(0, 0, 0, 0.6);
+  width: 2rem;
+  height: 2rem;
+  background: rgba(0, 0, 0, 0.7);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  transition: background 0.2s;
+  transition: all 0.2s ease;
   backdrop-filter: blur(4px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .placeholder-indicator:hover .info-icon {
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.85);
+  transform: scale(1.05);
+}
+
+.placeholder-indicator:active .info-icon {
+  transform: scale(0.95);
 }
 
 .tooltip-bubble {
@@ -182,8 +191,14 @@
     padding: 0.5rem 0.625rem;
   }
 
+  /* Even larger tap target on mobile */
+  .placeholder-indicator {
+    padding: 0.75rem;
+    margin: -0.75rem;
+  }
+
   .info-icon {
-    width: 1.375rem;
-    height: 1.375rem;
+    width: 2.25rem;
+    height: 2.25rem;
   }
 }
