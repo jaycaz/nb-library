@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
+import LocationPopover from './LocationPopover';
 import './BookCard.css';
 
 const BookCard = ({ book }) => {
   const [imageError, setImageError] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
+  const [showLocationPopover, setShowLocationPopover] = useState(false);
 
   const handleImageError = () => {
     setImageError(true);
@@ -116,9 +118,17 @@ const BookCard = ({ book }) => {
             <span className="book-genre">{book.Genre}</span>
           )}
           {book['Shelf Location'] && (
-            <span className="book-location">
+            <button
+              className="book-location"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setShowLocationPopover(true);
+              }}
+              aria-label={`View location of shelf ${book['Shelf Location']} on map`}
+            >
               📍 {book['Shelf Location']}
-            </span>
+            </button>
           )}
         </div>
         {book.Year && (
@@ -128,6 +138,12 @@ const BookCard = ({ book }) => {
           <p className="book-isbn">{book.ISBN}</p>
         )}
       </div>
+
+      <LocationPopover
+        isOpen={showLocationPopover}
+        onClose={() => setShowLocationPopover(false)}
+        shelfLocation={book['Shelf Location']}
+      />
     </div>
   );
 };
