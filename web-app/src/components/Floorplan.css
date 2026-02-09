@@ -62,7 +62,8 @@
 
 .shelf-label {
   fill: white;
-  font-size: 2px;
+  font-size: 3.6px;
+  font-family: 'Arial Rounded MT Bold', 'Arial Black', sans-serif;
   font-weight: bold;
   text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
   pointer-events: none;
@@ -97,7 +98,7 @@
   }
 
   .shelf-label {
-    font-size: 2.5px;
+    font-size: 4px;
   }
 
   .floorplan-legend {

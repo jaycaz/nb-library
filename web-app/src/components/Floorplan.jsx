@@ -5,26 +5,26 @@ import './Floorplan.css';
 // Format: { id, x%, y%, width%, height% }
 const SHELF_REGIONS = [
   // Left panel - Woodshop area
-  { id: '1.1', x: 15.2, y: 64.5, w: 2.8, h: 7 },
+  { id: '1.1', x: 17.5, y: 64.5, w: 2.8, h: 7 },
 
-  // Right panel - vertical stack along left edge
-  { id: '2.1', x: 52.8, y: 89, w: 2.8, h: 3.5 },
-  { id: '2.2', x: 52.8, y: 85, w: 2.8, h: 3.5 },
-  { id: '2.3', x: 52.8, y: 81, w: 2.8, h: 3.5 },
-  { id: '2.4', x: 52.8, y: 77, w: 2.8, h: 3.5 },
-  { id: '2.5', x: 52.8, y: 72.5, w: 2.8, h: 4 },
-  { id: '2.6', x: 52.8, y: 66.5, w: 2.8, h: 5.5 },
-  { id: '2.7', x: 52.8, y: 62, w: 2.8, h: 4 },
-  { id: '2.8', x: 52.8, y: 57.5, w: 2.8, h: 4 },
-  { id: '2.9', x: 52.8, y: 53, w: 2.8, h: 4 },
-  { id: '2.10', x: 52.8, y: 47, w: 2.8, h: 5.5 },
-  { id: '2.11', x: 52.8, y: 40, w: 2.8, h: 6.5 },
+  // Right panel - vertical stack along left edge (skinnier)
+  { id: '2.1', x: 52.8, y: 89, w: 2.3, h: 3.5 },
+  { id: '2.2', x: 52.8, y: 85, w: 2.3, h: 3.5 },
+  { id: '2.3', x: 52.8, y: 81, w: 2.3, h: 3.5 },
+  { id: '2.4', x: 52.8, y: 77, w: 2.3, h: 3.5 },
+  { id: '2.5', x: 52.8, y: 72.5, w: 2.3, h: 4 },
+  { id: '2.6', x: 52.8, y: 66.5, w: 2.3, h: 5.5 },
+  { id: '2.7', x: 52.8, y: 62, w: 2.3, h: 4 },
+  { id: '2.8', x: 52.8, y: 57.5, w: 2.3, h: 4 },
+  { id: '2.9', x: 52.8, y: 53, w: 2.3, h: 4 },
+  { id: '2.10', x: 52.8, y: 47, w: 2.3, h: 5.5 },
+  { id: '2.11', x: 52.8, y: 40, w: 2.3, h: 6.5 },
 
-  // Angled shelf near bottom right (rotated opposite direction)
-  { id: '2.12', x: 64, y: 78, w: 6, h: 3, rotation: 35 },
+  // Angled shelf near bottom right (moved further left)
+  { id: '2.12', x: 62, y: 78, w: 6, h: 3, rotation: 35 },
 
-  // Bottom right corner
-  { id: '2.13', x: 93.5, y: 95, w: 3, h: 2 },
+  // Bottom right corner (moved left)
+  { id: '2.13', x: 91, y: 95, w: 3, h: 2 },
 ];
 
 const Floorplan = ({ highlightShelf = null, showAllShelves = false, onShelfClick = null }) => {
@@ -66,6 +66,8 @@ const Floorplan = ({ highlightShelf = null, showAllShelves = false, onShelfClick
                   y={shelf.y}
                   width={shelf.w}
                   height={shelf.h}
+                  rx="0.3"
+                  ry="0.3"
                   transform={shelf.rotation ? `rotate(${shelf.rotation} ${shelf.x + shelf.w/2} ${shelf.y + shelf.h/2})` : ''}
                   className={`shelf-region ${highlighted ? 'highlighted' : 'dimmed'} ${hovered ? 'hovered' : ''}`}
                   onClick={() => handleShelfClick(shelf.id)}
