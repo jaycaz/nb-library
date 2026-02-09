@@ -1,30 +1,30 @@
 import { useState } from 'react';
 import './Floorplan.css';
 
-// Shelf coordinates (approximate percentages of image dimensions)
+// Shelf coordinates (percentages of image dimensions, calibrated to match PNG)
 // Format: { id, x%, y%, width%, height% }
 const SHELF_REGIONS = [
-  // Left panel shelves
-  { id: '1.1', x: 26.5, y: 78, w: 3.5, h: 8.5 },
+  // Left panel - Woodshop area
+  { id: '1.1', x: 15.2, y: 64.5, w: 2.8, h: 7 },
 
-  // Right panel shelves (vertical stack)
-  { id: '2.1', x: 61.5, y: 90, w: 3.5, h: 4 },
-  { id: '2.2', x: 61.5, y: 85, w: 3.5, h: 4 },
-  { id: '2.3', x: 61.5, y: 80.5, w: 3.5, h: 4 },
-  { id: '2.4', x: 61.5, y: 76, w: 3.5, h: 4 },
-  { id: '2.5', x: 61.5, y: 71, w: 3.5, h: 4 },
-  { id: '2.6', x: 61.5, y: 62, w: 3.5, h: 8 },
-  { id: '2.7', x: 61.5, y: 56.5, w: 3.5, h: 5 },
-  { id: '2.8', x: 61.5, y: 51, w: 3.5, h: 5 },
-  { id: '2.9', x: 61.5, y: 45.5, w: 3.5, h: 5 },
-  { id: '2.10', x: 61.5, y: 36.5, w: 3.5, h: 8.5 },
-  { id: '2.11', x: 61.5, y: 28, w: 3.5, h: 8 },
+  // Right panel - vertical stack along left edge
+  { id: '2.1', x: 52.8, y: 89, w: 2.8, h: 3.5 },
+  { id: '2.2', x: 52.8, y: 85, w: 2.8, h: 3.5 },
+  { id: '2.3', x: 52.8, y: 81, w: 2.8, h: 3.5 },
+  { id: '2.4', x: 52.8, y: 77, w: 2.8, h: 3.5 },
+  { id: '2.5', x: 52.8, y: 72.5, w: 2.8, h: 4 },
+  { id: '2.6', x: 52.8, y: 66.5, w: 2.8, h: 5.5 },
+  { id: '2.7', x: 52.8, y: 62, w: 2.8, h: 4 },
+  { id: '2.8', x: 52.8, y: 57.5, w: 2.8, h: 4 },
+  { id: '2.9', x: 52.8, y: 53, w: 2.8, h: 4 },
+  { id: '2.10', x: 52.8, y: 47, w: 2.8, h: 5.5 },
+  { id: '2.11', x: 52.8, y: 40, w: 2.8, h: 6.5 },
 
-  // Angled shelf
-  { id: '2.12', x: 69, y: 77, w: 7, h: 3.5, rotation: -35 },
+  // Angled shelf near bottom right (rotated opposite direction)
+  { id: '2.12', x: 64, y: 78, w: 6, h: 3, rotation: 35 },
 
-  // Bottom right shelf
-  { id: '2.13', x: 93, y: 97.5, w: 4, h: 2 },
+  // Bottom right corner
+  { id: '2.13', x: 93.5, y: 95, w: 3, h: 2 },
 ];
 
 const Floorplan = ({ highlightShelf = null, showAllShelves = false, onShelfClick = null }) => {
