@@ -173,6 +173,49 @@ When overlaying SVG on images:
 
 3. **Use Playwright for visual verification**: Take screenshots during development to catch alignment issues
 
+## Floorplan Maintenance
+
+### Image Files
+
+The floorplan feature uses two image files:
+- **`web-app/public/nb-floorplan.png`** - The main floorplan image used by the component
+- **`web-app/public/nb-floorplan-no-bg.png`** - Clean base version (kept for reference)
+
+**Important**: The `Floorplan.jsx` component references `/nb-floorplan.png`. Always verify which file is actually being used before updating assets.
+
+### Updating the Floorplan
+
+When updating the floorplan base image:
+1. Check `web-app/src/components/Floorplan.jsx` to confirm which image file is referenced
+2. Update the correct image file (typically `nb-floorplan.png`)
+3. Use clean source files rather than programmatically removing backgrounds
+4. Test the interactive overlays to ensure they still align correctly
+
+## Subtask Usage Patterns
+
+### When to Use Subtask
+
+Subtask is effective for:
+- **Exploration and research** - Investigating codebase patterns, APIs, or architecture
+- **Polish and refinement** - Well-defined improvements like styling adjustments, text changes
+- **Multi-file changes** - Tasks that touch several related files
+- **Independent work** - Tasks that can be completed without frequent clarification
+
+### Effective Task Delegation
+
+For best results:
+1. **Clear requirements** - Provide specific, measurable goals (e.g., "reduce text to half size")
+2. **Context** - Include relevant file paths and what needs to change
+3. **Scope appropriately** - Group related changes into one task, but keep tasks focused
+4. **Review and iterate** - Use `subtask diff` to review changes before merging
+
+Example of well-scoped polish task:
+- Text size adjustments (CSS)
+- Element positioning (component data)
+- Asset updates (image replacement)
+
+These are independent enough to work well together but related enough for a single task.
+
 ## Troubleshooting
 
 ### Subtask Issues
@@ -182,3 +225,10 @@ If subtask fails with "Credit balance is too low":
 - Solution: Re-authenticate with `/login` or `claude login`
 - The error message is misleading - it's an account type mismatch (API key vs subscription)
 - After re-login, subtask should work normally
+
+### Asset Management
+
+When updating images or other assets:
+1. **Verify references** - Check which file path is actually used in the code
+2. **Update the right file** - Don't assume based on filename alone
+3. **Test changes** - Preview the UI to ensure assets load correctly
