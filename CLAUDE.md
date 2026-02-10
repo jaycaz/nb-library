@@ -134,3 +134,51 @@ See [README-UPDATE-DB.md](README-UPDATE-DB.md) for:
 - All available options
 - Testing procedures
 - Troubleshooting tips
+
+## Visual Analysis and Coordinate Detection
+
+### For Diagrams, Floor Plans, and Abstract Images
+
+**Use AI Vision MCP (Gemini)** - Not traditional computer vision tools.
+
+- **Install**: `claude mcp add ai-vision-mcp -e IMAGE_PROVIDER=google -e GEMINI_API_KEY=your-key -- npx ai-vision-mcp`
+- **Best for**: Floor plans, diagrams, charts, UI mockups, technical drawings
+- **Why**: Multimodal vision models understand abstract representations and context
+- **Not for**: Photo-based computer vision (use OpenCV for that)
+
+**Example - Detecting shapes in diagrams:**
+```javascript
+mcp__ai-vision-mcp__detect_objects_in_image({
+  imageSource: "/path/to/floorplan.png",
+  prompt: "Detect all red rectangular regions. Return bounding box coordinates as percentages."
+})
+```
+
+**Important**: AI Vision returns **center point coordinates**. If using with SVG rect (which uses top-left anchor), adjust:
+```javascript
+x_topleft = x_center - (width / 2)
+y_topleft = y_center - (height / 2)
+```
+
+### SVG Overlay Best Practices
+
+When overlaying SVG on images:
+
+1. **Match aspect ratios**: CSS `aspect-ratio` must match image dimensions
+   ```css
+   aspect-ratio: 2331 / 2657; /* Use actual image width/height */
+   ```
+
+2. **Check coordinate anchor points**: AI vision typically returns centers, SVG uses top-left
+
+3. **Use Playwright for visual verification**: Take screenshots during development to catch alignment issues
+
+## Troubleshooting
+
+### Subtask Issues
+
+If subtask fails with "Credit balance is too low":
+- This is usually an **authentication issue**, not actually about credits
+- Solution: Re-authenticate with `/login` or `claude login`
+- The error message is misleading - it's an account type mismatch (API key vs subscription)
+- After re-login, subtask should work normally

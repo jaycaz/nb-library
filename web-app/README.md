@@ -154,6 +154,50 @@ The app loads data from `/public/cleaned_output.csv` with the following fields:
 - Desktop: 4-6 columns (220px cards)
 - Fluid grid with auto-fill
 
+### Interactive Floorplan
+
+The app includes an interactive floorplan feature to help users locate books physically:
+
+- **Global Map View**: "Library Map" button in header opens modal with full Noisebridge floorplan
+- **Per-Book Location**: Click any book's shelf location to see a popover highlighting that specific shelf
+- **Visual Highlighting**: Selected shelf is vibrant red, others are dimmed for clarity
+- **14 Shelf Locations**: Covers shelves 1.1, 2.1-2.13 across both floors
+
+#### Floorplan Architecture
+
+- **Base image**: `public/nb-floorplan.png` (2331×2657px)
+- **SVG overlays**: Positioned rectangles for each shelf
+- **Coordinates**: AI-detected using Gemini vision model (see commit 325c5c4)
+- **Aspect ratio**: CSS matches image dimensions (2331/2657) to prevent scaling issues
+
+#### Shelf Coordinate Format
+
+```javascript
+{ id: '2.5', x: 59.0, y: 59.05, w: 3.4, h: 4.5 }
+```
+- `x`, `y`: Top-left corner as percentage of image dimensions
+- `w`, `h`: Width and height as percentages
+- Coordinates were AI-detected then adjusted from center points to top-left anchors
+
+#### Updating Shelf Positions
+
+If shelf locations change in the floorplan image:
+
+1. Use AI Vision MCP to detect new coordinates:
+   ```bash
+   mcp__ai-vision-mcp__detect_objects_in_image
+   ```
+
+2. Adjust from center to top-left anchor:
+   ```javascript
+   x = center_x - (width / 2)
+   y = center_y - (height / 2)
+   ```
+
+3. Update `SHELF_REGIONS` in `src/components/Floorplan.jsx`
+
+4. Verify alignment with Playwright screenshots
+
 ## Future Enhancements
 
 Potential additions for future development:
