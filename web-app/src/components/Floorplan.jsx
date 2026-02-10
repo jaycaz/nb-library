@@ -20,8 +20,8 @@ const SHELF_REGIONS = [
   { id: '2.10', x: 59.0, y: 29.55, w: 3.4, h: 4.5 },
   { id: '2.11', x: 59.0, y: 24.6, w: 3.4, h: 4.4 },
 
-  // Angled shelf (anchor-adjusted)
-  { id: '2.12', x: 67.7, y: 67.05, w: 3.4, h: 4.5 },
+  // Angled shelf (anchor-adjusted, taller + 30° CCW rotation)
+  { id: '2.12', x: 67.7, y: 67.05, w: 3.4, h: 7.0, rotation: -30 },
 
   // Bottom right corner (anchor-adjusted)
   { id: '2.13', x: 88.15, y: 86.0, w: 5.3, h: 2.8 },
