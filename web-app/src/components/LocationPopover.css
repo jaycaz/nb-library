@@ -83,6 +83,19 @@
   font-size: 5.4px;
 }
 
+/* Enhanced shelf styling for popover */
+.location-popover-content .shelf-region.highlighted {
+  fill: rgba(255, 0, 0, 0.4);
+  stroke: rgba(255, 0, 0, 1);
+  stroke-width: 0.8;
+  filter: drop-shadow(0 0 4px rgba(255, 0, 0, 1));
+}
+
+.location-popover-content .shelf-region.dimmed {
+  fill: rgba(150, 150, 150, 0.3);
+  stroke: none;
+}
+
 /* Mobile responsive */
 @media (max-width: 768px) {
   .location-popover-overlay {
@@ -108,6 +121,11 @@
   /* Larger text for floorplan in popover on mobile */
   .location-popover-content .shelf-label {
     font-size: 6px;
+  }
+
+  /* Enhanced shelf styling for popover on mobile */
+  .location-popover-content .shelf-region.highlighted {
+    stroke-width: 1.0;
   }
 }
 
