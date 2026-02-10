@@ -78,6 +78,11 @@
   overflow-y: auto;
 }
 
+/* Larger text for floorplan in popover only */
+.location-popover-content .shelf-label {
+  font-size: 5.4px;
+}
+
 /* Mobile responsive */
 @media (max-width: 768px) {
   .location-popover-overlay {
@@ -98,6 +103,11 @@
 
   .popover-body {
     padding: 20px;
+  }
+
+  /* Larger text for floorplan in popover on mobile */
+  .location-popover-content .shelf-label {
+    font-size: 6px;
   }
 }
 
