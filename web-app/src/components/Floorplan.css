@@ -7,7 +7,7 @@
 .floorplan-wrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 2 / 1;
+  aspect-ratio: 2331 / 2657;
   background: #f5f5f5;
   border-radius: 8px;
   overflow: hidden;
@@ -94,7 +94,7 @@
 /* Mobile responsive */
 @media (max-width: 768px) {
   .floorplan-wrapper {
-    aspect-ratio: 2 / 1;
+    aspect-ratio: 2331 / 2657;
   }
 
   .shelf-label {
