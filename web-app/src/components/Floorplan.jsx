@@ -1,30 +1,30 @@
 import { useState } from 'react';
 import './Floorplan.css';
 
-// Shelf coordinates - AI-detected using Gemini vision model for precise alignment
+// Shelf coordinates - AI-detected center points, adjusted to top-left anchor
 // Format: { id, x%, y%, width%, height% }
 const SHELF_REGIONS = [
   // Left panel - Woodshop area
-  { id: '1.1', x: 26.3, y: 69.2, w: 3.2, h: 6.3 },
+  { id: '1.1', x: 24.7, y: 66.05, w: 3.2, h: 6.3 },
 
-  // Right panel - vertical stack (AI-detected coordinates)
-  { id: '2.1', x: 60.7, y: 81.8, w: 3.4, h: 4.5 },
-  { id: '2.2', x: 60.7, y: 76.8, w: 3.4, h: 4.5 },
-  { id: '2.3', x: 60.7, y: 71.8, w: 3.4, h: 4.5 },
-  { id: '2.4', x: 60.7, y: 66.8, w: 3.4, h: 4.5 },
-  { id: '2.5', x: 60.7, y: 61.3, w: 3.4, h: 4.5 },
-  { id: '2.6', x: 60.7, y: 55.8, w: 3.4, h: 4.5 },
-  { id: '2.7', x: 60.7, y: 50.3, w: 3.4, h: 4.5 },
-  { id: '2.8', x: 60.7, y: 44.3, w: 3.4, h: 4.5 },
-  { id: '2.9', x: 60.7, y: 39.3, w: 3.4, h: 4.5 },
-  { id: '2.10', x: 60.7, y: 31.8, w: 3.4, h: 4.5 },
-  { id: '2.11', x: 60.7, y: 26.8, w: 3.4, h: 4.4 },
+  // Right panel - vertical stack (AI-detected, anchor-adjusted)
+  { id: '2.1', x: 59.0, y: 79.55, w: 3.4, h: 4.5 },
+  { id: '2.2', x: 59.0, y: 74.55, w: 3.4, h: 4.5 },
+  { id: '2.3', x: 59.0, y: 69.55, w: 3.4, h: 4.5 },
+  { id: '2.4', x: 59.0, y: 64.55, w: 3.4, h: 4.5 },
+  { id: '2.5', x: 59.0, y: 59.05, w: 3.4, h: 4.5 },
+  { id: '2.6', x: 59.0, y: 53.55, w: 3.4, h: 4.5 },
+  { id: '2.7', x: 59.0, y: 48.05, w: 3.4, h: 4.5 },
+  { id: '2.8', x: 59.0, y: 42.05, w: 3.4, h: 4.5 },
+  { id: '2.9', x: 59.0, y: 37.05, w: 3.4, h: 4.5 },
+  { id: '2.10', x: 59.0, y: 29.55, w: 3.4, h: 4.5 },
+  { id: '2.11', x: 59.0, y: 24.6, w: 3.4, h: 4.4 },
 
-  // Angled shelf (AI-detected, no rotation needed - already aligned)
-  { id: '2.12', x: 69.4, y: 69.3, w: 3.4, h: 4.5 },
+  // Angled shelf (anchor-adjusted)
+  { id: '2.12', x: 67.7, y: 67.05, w: 3.4, h: 4.5 },
 
-  // Bottom right corner
-  { id: '2.13', x: 90.8, y: 87.4, w: 5.3, h: 2.8 },
+  // Bottom right corner (anchor-adjusted)
+  { id: '2.13', x: 88.15, y: 86.0, w: 5.3, h: 2.8 },
 ];
 
 const Floorplan = ({ highlightShelf = null, showAllShelves = false, onShelfClick = null }) => {
