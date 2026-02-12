@@ -2,8 +2,11 @@ import { describe, it, expect, vi, afterEach } from 'vitest';
 import { render, screen, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { readFileSync } from 'fs';
-import { resolve } from 'path';
+import { dirname, resolve } from 'path';
+import { fileURLToPath } from 'url';
 import LocationPopover from './LocationPopover';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Mock Floorplan since we're testing the popover behavior, not the map
 vi.mock('./Floorplan', () => ({

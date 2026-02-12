@@ -9,7 +9,6 @@ function App() {
   const [allBooks, setAllBooks] = useState([]);
   const [filteredBooks, setFilteredBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState('');
   const [isMapOpen, setIsMapOpen] = useState(false);
 
   useEffect(() => {
@@ -30,7 +29,6 @@ function App() {
   }, []);
 
   const handleSearch = useCallback((query) => {
-    setSearchQuery(query);
     const results = searchBooks(allBooks, query);
     setFilteredBooks(results);
   }, [allBooks]);
