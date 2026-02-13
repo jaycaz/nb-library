@@ -27,7 +27,7 @@ const SHELF_REGIONS = [
   { id: '2.13', x: 88.15, y: 86.0, w: 5.3, h: 2.8 },
 ];
 
-const Floorplan = ({ highlightShelf = null, showAllShelves = false, onShelfClick = null }) => {
+const Floorplan = ({ highlightShelf = null, showAllShelves = false, onShelfClick = null, disableHover = false }) => {
   const [hoveredShelf, setHoveredShelf] = useState(null);
 
   const isHighlighted = (shelfId) => {
@@ -57,7 +57,7 @@ const Floorplan = ({ highlightShelf = null, showAllShelves = false, onShelfClick
         >
           {SHELF_REGIONS.map((shelf) => {
             const highlighted = isHighlighted(shelf.id);
-            const hovered = hoveredShelf === shelf.id;
+            const hovered = !disableHover && hoveredShelf === shelf.id;
 
             return (
               <g key={shelf.id}>
@@ -71,8 +71,10 @@ const Floorplan = ({ highlightShelf = null, showAllShelves = false, onShelfClick
                   transform={shelf.rotation ? `rotate(${shelf.rotation} ${shelf.x + shelf.w/2} ${shelf.y + shelf.h/2})` : ''}
                   className={`shelf-region ${highlighted ? 'highlighted' : 'dimmed'} ${hovered ? 'hovered' : ''}`}
                   onClick={() => handleShelfClick(shelf.id)}
-                  onMouseEnter={() => setHoveredShelf(shelf.id)}
-                  onMouseLeave={() => setHoveredShelf(null)}
+                  {...(!disableHover && {
+                    onMouseEnter: () => setHoveredShelf(shelf.id),
+                    onMouseLeave: () => setHoveredShelf(null)
+                  })}
                 />
                 {(highlighted || showAllShelves || hovered) && (
                   <text

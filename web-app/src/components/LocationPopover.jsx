@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import Floorplan from './Floorplan';
 import './LocationPopover.css';
 
@@ -36,7 +37,7 @@ const LocationPopover = ({ isOpen, onClose, shelfLocation }) => {
 
   if (!isOpen) return null;
 
-  return (
+  return createPortal(
     <div className="location-popover-overlay">
       <div className="location-popover-content" onClick={(e) => e.stopPropagation()}>
         <div className="popover-header">
@@ -52,10 +53,11 @@ const LocationPopover = ({ isOpen, onClose, shelfLocation }) => {
           </button>
         </div>
         <div className="popover-body">
-          <Floorplan highlightShelf={shelfLocation} />
+          <Floorplan highlightShelf={shelfLocation} disableHover={true} />
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
