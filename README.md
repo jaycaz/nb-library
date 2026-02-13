@@ -14,6 +14,8 @@ A React app for searching the catalog, viewing book details, and locating books 
 cd web-app && npm install && npm run dev
 ```
 
+---
+
 ### [`csv-cleanup/`](csv-cleanup/) — Data Pipeline
 
 Python script that converts the raw 73-column `data.csv` export into the clean 13-column CSV the web app uses. No external dependencies.
@@ -21,6 +23,8 @@ Python script that converts the raw 73-column `data.csv` export into the clean 1
 ```bash
 cd csv-cleanup && python3 clean_library_csv.py --input ../data.csv --output cleaned.csv
 ```
+
+---
 
 ### [`isbn-validation/`](isbn-validation/) — ISBN Checker
 
@@ -30,15 +34,15 @@ Validates whether each book's ISBN matches its stated edition using Google Books
 cd isbn-validation && python3 validate_editions.py --limit 5
 ```
 
+---
+
 ## Updating the Web App Data
 
-When books are added or metadata changes in `data.csv`, regenerate the web app's database:
+When books are added or metadata changes in `data.csv`, regenerate the web app's database with [`update-web-db.sh`](README-UPDATE-DB.md):
 
 ```bash
 ./update-web-db.sh --skip-validation
 ```
-
-See [README-UPDATE-DB.md](README-UPDATE-DB.md) for full options.
 
 ## Data
 
