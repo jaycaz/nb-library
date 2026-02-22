@@ -41,8 +41,10 @@ export default function StyleSample() {
 
       {/* 1. Typography Specimen — Light */}
       <section className="ss-section">
-        <p className="ss-section-label">Section 01</p>
-        <h2 className="ss-section-title">Typography Specimen</h2>
+        <div className="ss-section-header">
+          <p className="ss-section-label">Section 01</p>
+          <h2 className="ss-section-title">Typography Specimen</h2>
+        </div>
         <div className="type-specimen">
           <div className="type-family">
             <p className="type-family-name">Archivo &mdash; Headings, Body &amp; Display</p>
@@ -71,8 +73,10 @@ export default function StyleSample() {
 
       {/* 2. Color Palette — Light */}
       <section className="ss-section">
-        <p className="ss-section-label">Section 02</p>
-        <h2 className="ss-section-title">Color Palette</h2>
+        <div className="ss-section-header">
+          <p className="ss-section-label">Section 02</p>
+          <h2 className="ss-section-title">Color Palette</h2>
+        </div>
         <div className="color-grid">
           {colors.map((c) => (
             <div key={c.hex} className="color-chip">
@@ -91,8 +95,10 @@ export default function StyleSample() {
 
       {/* 3. Texture Samples — Light (with dark swatches) */}
       <section className="ss-section">
-        <p className="ss-section-label">Section 03</p>
-        <h2 className="ss-section-title">Texture Samples</h2>
+        <div className="ss-section-header">
+          <p className="ss-section-label">Section 03</p>
+          <h2 className="ss-section-title">Texture Samples</h2>
+        </div>
         <div className="texture-grid">
           <div className="texture-sample texture-paper-grain">
             <span className="texture-sample-label">Paper Grain</span>
@@ -145,8 +151,10 @@ export default function StyleSample() {
 
       {/* 5. Search Bar — Light */}
       <section className="ss-section">
-        <p className="ss-section-label">Section 05</p>
-        <h2 className="ss-section-title">Search</h2>
+        <div className="ss-section-header">
+          <p className="ss-section-label">Section 05</p>
+          <h2 className="ss-section-title">Search</h2>
+        </div>
         <div className="search-container">
           <div className="catalog-card">
             <div className="catalog-card-header">
@@ -168,8 +176,10 @@ export default function StyleSample() {
 
       {/* 6. Map Button — Light */}
       <section className="ss-section">
-        <p className="ss-section-label">Section 06</p>
-        <h2 className="ss-section-title">Library Map</h2>
+        <div className="ss-section-header">
+          <p className="ss-section-label">Section 06</p>
+          <h2 className="ss-section-title">Library Map</h2>
+        </div>
         <div className="map-button-sample">
           <button className="catalog-map-button">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -182,8 +192,10 @@ export default function StyleSample() {
 
       {/* 7. Featured Quote Card — Light */}
       <section className="ss-section">
-        <p className="ss-section-label">Section 07</p>
-        <h2 className="ss-section-title">Featured Quote</h2>
+        <div className="ss-section-header">
+          <p className="ss-section-label">Section 07</p>
+          <h2 className="ss-section-title">Featured Quote</h2>
+        </div>
         <div className="quote-card">
           <p className="quote-text">{quotes[0].text}</p>
           <p className="quote-attribution">{quotes[0].attribution}</p>
