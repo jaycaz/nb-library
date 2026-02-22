@@ -18,16 +18,18 @@
   line-height: 1.6;
   overflow-x: hidden;
 
-  /* Paper grain texture */
+  /* Worn paper grain texture */
   background-image:
-    radial-gradient(circle, #d4c9b8 0.5px, transparent 0.5px);
-  background-size: 16px 16px;
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
 }
 
 /* === Dark section modifier === */
 .ss-section-dark {
-  background: #1a1a1a;
-  background-image: none;
+  background-color: #1a1a1a;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
   color: #f5f0e8;
   border-bottom: 1px solid #3d3d3d;
 }
@@ -260,8 +262,8 @@
 .texture-paper-grain {
   background-color: #f5f0e8;
   background-image:
-    radial-gradient(circle, #d4c9b8 0.5px, transparent 0.5px);
-  background-size: 16px 16px;
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
 }
 
 .texture-dot-grid {
@@ -297,8 +299,8 @@
 .texture-dark-grain {
   background-color: #1a1a1a;
   background-image:
-    radial-gradient(circle, rgba(255,255,255,0.06) 0.5px, transparent 0.5px);
-  background-size: 16px 16px;
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.18'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
   border-color: #3d3d3d;
 }
 
