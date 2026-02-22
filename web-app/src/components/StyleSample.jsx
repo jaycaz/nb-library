@@ -166,9 +166,23 @@ export default function StyleSample() {
         </div>
       </section>
 
-      {/* 6. Featured Quote Card — Light */}
+      {/* 6. Map Button — Light */}
       <section className="ss-section">
         <p className="ss-section-label">Section 06</p>
+        <h2 className="ss-section-title">Library Map</h2>
+        <div className="map-button-sample">
+          <button className="catalog-map-button">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M9 20l-5.447-2.724A1 1 0 0 1 3 16.382V5.618a1 1 0 0 1 1.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0 0 21 18.382V7.618a1 1 0 0 0-.553-.894L15 4m0 13V4m0 0L9 7" />
+            </svg>
+            Library Map
+          </button>
+        </div>
+      </section>
+
+      {/* 7. Featured Quote Card — Light */}
+      <section className="ss-section">
+        <p className="ss-section-label">Section 07</p>
         <h2 className="ss-section-title">Featured Quote</h2>
         <div className="quote-card">
           <p className="quote-text">{quotes[0].text}</p>
@@ -176,10 +190,10 @@ export default function StyleSample() {
         </div>
       </section>
 
-      {/* 7. Collage Preview — Dark */}
+      {/* 8. Collage Preview — Dark */}
       <section className="ss-section ss-section-dark">
         <div className="ss-section-inner">
-          <p className="ss-section-label">Section 07</p>
+          <p className="ss-section-label">Section 08</p>
           <h2 className="ss-section-title">Collage Preview</h2>
           <div className="collage-container">
             <div className="collage-wrapper">

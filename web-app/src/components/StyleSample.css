@@ -476,7 +476,43 @@
   padding-left: 0.1rem;
 }
 
-/* === 6. Quote Card === */
+/* === 6. Map Button === */
+.map-button-sample {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.catalog-map-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.65rem 1.25rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #2c2416;
+  background: #faf8f3;
+  border: 1px solid #2c2416;
+  border-radius: 2px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 #2c2416;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.catalog-map-button:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 #2c2416;
+}
+
+.catalog-map-button:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #2c2416;
+}
+
+/* === 7. Quote Card === */
 .quote-card {
   max-width: 520px;
   margin: 0 auto;
