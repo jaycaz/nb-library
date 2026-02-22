@@ -1,74 +1,121 @@
 .search-bar {
   margin-bottom: 2rem;
   width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.catalog-card {
+  background: #faf8f3;
+  border: 1px solid #c4b8a4;
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow:
+    3px 3px 0 #d4c9b8,
+    6px 6px 0 #c4b8a4;
+}
+
+.catalog-card-header {
+  padding: 0.5rem 1.25rem;
+  background: #f0e8da;
+  border-bottom: 1px dashed #c4b8a4;
+}
+
+.catalog-card-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #CC3333;
+}
+
+.catalog-card-body {
+  padding: 1rem 1.25rem 1.25rem;
+  background: #faf8f3;
 }
 
 .search-input-wrapper {
   position: relative;
   width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
 }
 
 .search-icon {
   position: absolute;
-  left: 1rem;
+  left: 0;
   top: 50%;
   transform: translateY(-50%);
-  color: #6b7280;
+  color: #a89a88;
   pointer-events: none;
 }
 
 .search-input {
+  display: block;
   width: 100%;
-  padding: 0.875rem 3rem 0.875rem 3rem;
+  padding: 0.25rem 2rem 0.4rem 1.75rem;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 1rem;
-  border: 2px solid #e5e7eb;
-  border-radius: 0.75rem;
+  line-height: 1.6;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #c4b8a4;
+  border-radius: 0;
   outline: none;
-  transition: all 0.2s;
-  background: white;
+  color: #2c2416;
+  caret-color: #CC3333;
+}
+
+.search-input::placeholder {
+  color: #a89a88;
+  font-style: italic;
+  font-family: 'Archivo', sans-serif;
 }
 
 .search-input:focus {
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  border-bottom-color: #b87333;
+  box-shadow: none;
 }
 
 .clear-button {
   position: absolute;
-  right: 1rem;
+  right: 0;
   top: 50%;
   transform: translateY(-50%);
   background: none;
   border: none;
-  font-size: 1.75rem;
-  color: #6b7280;
+  font-size: 1.5rem;
+  color: #a89a88;
   cursor: pointer;
   padding: 0;
-  width: 2rem;
-  height: 2rem;
+  width: 1.75rem;
+  height: 1.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  transition: background 0.2s;
+  border-radius: 2px;
+  transition: color 0.15s ease;
 }
 
 .clear-button:hover {
-  background: #f3f4f6;
+  color: #b87333;
+  background: none;
 }
 
 .search-results-count {
-  text-align: center;
-  margin-top: 1rem;
-  color: #6b7280;
-  font-size: 0.875rem;
+  margin-top: 0.6rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #6b5e4f;
+  padding-left: 0.1rem;
+  text-align: left;
 }
 
 @media (max-width: 640px) {
   .search-input {
-    padding: 0.75rem 2.5rem 0.75rem 2.5rem;
     font-size: 0.9375rem;
+    padding: 0.25rem 2rem 0.4rem 1.75rem;
   }
 }

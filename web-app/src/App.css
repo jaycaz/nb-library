@@ -2,14 +2,15 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: #f9fafb;
 }
 
 .app-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background-color: #1a1a1a;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  color: #f5f0e8;
   padding: 2.5rem 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-bottom: 3px solid #d4a017;
 }
 
 .header-content {
@@ -24,46 +25,68 @@
   gap: 20px;
 }
 
+.header-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.header-logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
 .app-title {
+  font-family: 'Archivo', sans-serif;
   font-size: 2.5rem;
-  font-weight: 700;
-  margin: 0 0 0.5rem 0;
-  letter-spacing: -0.025em;
+  font-weight: 900;
+  margin: 0;
+  letter-spacing: -0.01em;
+  text-transform: lowercase;
+  color: #f5f0e8;
 }
 
 .app-subtitle {
-  font-size: 1.125rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.85rem;
   margin: 0;
-  opacity: 0.95;
-  font-weight: 400;
+  color: #a89a88;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
 }
 
 .map-button {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 12px 20px;
-  border-radius: 8px;
-  font-size: 16px;
+  gap: 0.6rem;
+  padding: 0.65rem 1.25rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.8rem;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #2c2416;
+  background: #faf8f3;
+  border: 1px solid #2c2416;
+  border-radius: 2px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  box-shadow: 3px 3px 0 #2c2416;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
   white-space: nowrap;
 }
 
 .map-button:hover {
-  background: rgba(255, 255, 255, 0.3);
-  border-color: rgba(255, 255, 255, 0.5);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 #b87333;
+  border-color: #b87333;
 }
 
 .map-button:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #2c2416;
 }
 
 .app-main {
@@ -77,16 +100,21 @@
 }
 
 .app-footer {
-  background: white;
-  border-top: 1px solid #e5e7eb;
-  padding: 1.5rem 1.5rem;
+  background-color: #1a1a1a;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  border-top: 3px solid #d4a017;
+  padding: 2rem 1.5rem;
   text-align: center;
-  color: #6b7280;
-  font-size: 0.875rem;
 }
 
 .app-footer p {
   margin: 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  color: #a89a88;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
 }
 
 @media (max-width: 640px) {
@@ -95,11 +123,11 @@
   }
 
   .app-title {
-    font-size: 1.875rem;
+    font-size: 1.75rem;
   }
 
   .app-subtitle {
-    font-size: 1rem;
+    font-size: 0.75rem;
   }
 
   .app-main {
@@ -118,12 +146,13 @@
   .map-button {
     width: 100%;
     justify-content: center;
-    padding: 10px 16px;
-    font-size: 14px;
+    padding: 0.6rem 1rem;
+    font-size: 0.75rem;
   }
 
-  .map-button span {
-    display: inline;
+  .header-logo {
+    width: 40px;
+    height: 40px;
   }
 }
 

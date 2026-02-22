@@ -127,7 +127,7 @@ const BookCard = ({ book }) => {
               }}
               aria-label={`View location of shelf ${book['Shelf Location']} on map`}
             >
-              📍 {book['Shelf Location']}
+              {book['Shelf Location']}
             </button>
           )}
         </div>

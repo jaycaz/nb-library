@@ -41,7 +41,10 @@ function App() {
         <div className="header-content">
           <div className="header-top">
             <div>
-              <h1 className="app-title">Noisebridge Library</h1>
+              <div className="header-title-row">
+                <img src="/nb-logo.jpg" alt="Noisebridge" className="header-logo" />
+                <h1 className="app-title">Noisebridge Library</h1>
+              </div>
               <p className="app-subtitle">Browse and search our book collection</p>
             </div>
             <button
