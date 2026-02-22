@@ -405,52 +405,75 @@
   color: #6b5e4f;
 }
 
-/* === 5. Search Bar === */
+/* === 5. Search / Catalog Card === */
 .search-container {
   max-width: 600px;
   margin: 0 auto;
 }
 
-.search-bar {
-  position: relative;
+.catalog-card {
   background: #faf8f3;
-  border: 2px solid #2c2416;
+  border: 1px solid #c4b8a4;
   border-radius: 2px;
-  padding: 0;
+  overflow: hidden;
   box-shadow:
-    inset 2px 2px 4px rgba(44, 36, 22, 0.1),
-    3px 3px 0 #d4c9b8;
+    3px 3px 0 #d4c9b8,
+    6px 6px 0 #c4b8a4;
 }
 
-.search-bar input {
+.catalog-card-header {
+  padding: 0.5rem 1.25rem;
+  background: #f0e8da;
+  border-bottom: 1px dashed #c4b8a4;
+}
+
+.catalog-card-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #CC3333;
+}
+
+.catalog-card-body {
+  padding: 1rem 1.25rem 1.25rem;
+  background: #faf8f3;
+}
+
+.catalog-input {
+  display: block;
   width: 100%;
-  padding: 1rem 1.25rem;
-  font-family: 'Archivo', sans-serif;
-  font-weight: 500;
-  font-size: 1.05rem;
+  padding: 0.25rem 0 0.4rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1rem;
+  line-height: 1.6;
   background: transparent;
   border: none;
+  border-bottom: 1px solid #c4b8a4;
   outline: none;
   color: #2c2416;
   caret-color: #CC3333;
 }
 
-.search-bar input::placeholder {
+.catalog-input::placeholder {
   color: #a89a88;
   font-style: italic;
+  font-family: 'Archivo', sans-serif;
 }
 
-.search-hint {
-  text-align: center;
-  margin-top: 0.75rem;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.7rem;
-  color: #6b5e4f;
-}
-
-/* Blinking block cursor effect */
-.search-bar input:focus {
+.catalog-input:focus {
   caret-shape: block;
+}
+
+.catalog-count {
+  margin-top: 0.6rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #6b5e4f;
+  padding-left: 0.1rem;
 }
 
 /* === 6. Quote Card === */

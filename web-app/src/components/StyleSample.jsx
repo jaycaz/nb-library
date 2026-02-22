@@ -146,17 +146,23 @@ export default function StyleSample() {
       {/* 5. Search Bar — Light */}
       <section className="ss-section">
         <p className="ss-section-label">Section 05</p>
-        <h2 className="ss-section-title">Search — "The Typewriter"</h2>
+        <h2 className="ss-section-title">Search</h2>
         <div className="search-container">
-          <div className="search-bar">
-            <input
-              type="text"
-              placeholder="Type to search the stacks..."
-              value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
-            />
+          <div className="catalog-card">
+            <div className="catalog-card-header">
+              <span className="catalog-card-label">Catalog Search</span>
+            </div>
+            <div className="catalog-card-body">
+              <input
+                className="catalog-input"
+                type="text"
+                placeholder="author, title, subject, keyword..."
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
+              />
+            </div>
           </div>
-          <p className="search-hint">Monospace input &bull; paper-inset styling &bull; block cursor</p>
+          <p className="catalog-count">1,147 entries indexed</p>
         </div>
       </section>
 
