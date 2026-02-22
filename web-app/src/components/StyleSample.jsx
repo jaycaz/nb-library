@@ -39,24 +39,25 @@ export default function StyleSample() {
         <h2 className="ss-section-title">Typography Specimen</h2>
         <div className="type-specimen">
           <div className="type-family">
-            <p className="type-family-name">Archivo Black &mdash; Headings &amp; Hero Text</p>
+            <p className="type-family-name">Archivo &mdash; Headings, Body &amp; Display</p>
             <div className="type-sizes type-sample-archivo">
-              <p><span className="size-label">32px</span> <span style={{ fontSize: '2rem' }}>The stacks are open</span></p>
-              <p><span className="size-label">24px</span> <span style={{ fontSize: '1.5rem' }}>Browse the collection at Noisebridge</span></p>
-              <p><span className="size-label">18px</span> <span style={{ fontSize: '1.125rem' }}>Every book tells a story about who we are</span></p>
-              <p><span className="size-label">14px</span> <span style={{ fontSize: '0.875rem' }}>Catalog entry no. 1138 — checked out — due back Tuesday</span></p>
+              <p><span className="size-label">900</span> <span style={{ fontSize: '2.5rem', fontWeight: 900 }}>The stacks are open</span></p>
+              <p><span className="size-label">800</span> <span style={{ fontSize: '2.5rem', fontWeight: 800 }}>The stacks are open</span></p>
+              <p><span className="size-label">700</span> <span style={{ fontSize: '2.5rem', fontWeight: 700 }}>The stacks are open</span></p>
+              <p style={{ marginTop: '0.75rem' }}><span className="size-label">700</span> <span style={{ fontSize: '1.5rem', fontWeight: 700 }}>Browse the collection at Noisebridge</span></p>
+              <p><span className="size-label">600</span> <span style={{ fontSize: '1.5rem', fontWeight: 600 }}>Browse the collection at Noisebridge</span></p>
+              <p style={{ marginTop: '0.75rem' }}><span className="size-label">500</span> <span style={{ fontSize: '1.05rem', fontWeight: 500 }}>A shared library for the curious and the bold. Noisebridge maintains a collection of over 1,100 books spanning electronics, programming, mathematics, science fiction, and the liberal arts.</span></p>
+              <p><span className="size-label">400</span> <span style={{ fontSize: '1rem', fontWeight: 400 }}>Books may be borrowed by any member. Please return them to the shelf when finished. If a book changes your life, leave a note in the margin.</span></p>
+              <p><span className="size-label">400i</span> <span style={{ fontSize: '0.95rem', fontWeight: 400, fontStyle: 'italic' }}>Richard P. Feynman &bull; Douglas R. Hofstadter &bull; Harold Abelson</span></p>
             </div>
           </div>
 
           <div className="type-family">
-            <p className="type-family-name">IBM Plex Mono &mdash; Body Text, UI &amp; Metadata</p>
+            <p className="type-family-name">IBM Plex Mono &mdash; Labels, Captions &amp; Metadata</p>
             <div className="type-sizes type-sample-ibm-plex">
-              <p><span className="size-label">16px</span> <span style={{ fontSize: '1rem', fontWeight: 400 }}>A shared library for the curious and the bold. Noisebridge maintains a collection of over 1,100 books spanning electronics, programming, mathematics, science fiction, and the liberal arts.</span></p>
-              <p><span className="size-label">14px</span> <span style={{ fontSize: '0.875rem', fontWeight: 400 }}>Books may be borrowed by any member. Please return them to the shelf when finished. If a book changes your life, leave a note in the margin.</span></p>
-              <p style={{ marginTop: '0.5rem' }}><span className="size-label">14px</span> <span style={{ fontSize: '0.875rem', fontWeight: 500 }}>STATUS: AVAILABLE &bull; SHELF A-3 &bull; ISBN 978-0-393-31604-9</span></p>
+              <p><span className="size-label">14px</span> <span style={{ fontSize: '0.875rem', fontWeight: 500 }}>STATUS: AVAILABLE &bull; SHELF A-3 &bull; ISBN 978-0-393-31604-9</span></p>
               <p><span className="size-label">12px</span> <span style={{ fontSize: '0.75rem', fontWeight: 500 }}>Last checked out: 2024-11-03 &bull; Condition: Good &bull; Edition: 2nd</span></p>
               <p><span className="size-label">11px</span> <span style={{ fontSize: '0.6875rem', fontWeight: 600 }}>SCIENCE / MEMOIR &bull; 391 PAGES &bull; W. W. NORTON &amp; COMPANY</span></p>
-              <p><span className="size-label">italic</span> <span style={{ fontSize: '0.875rem', fontWeight: 400, fontStyle: 'italic' }}>Richard P. Feynman &bull; Douglas R. Hofstadter &bull; Harold Abelson</span></p>
             </div>
           </div>
         </div>
