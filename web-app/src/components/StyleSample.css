@@ -54,6 +54,21 @@
   margin-bottom: 0;
 }
 
+.ss-header-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.25rem;
+}
+
+.ss-header-logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-right: 0.75rem;
+}
+
 .ss-header h1 {
   font-family: 'Archivo', sans-serif;
   font-weight: 900;
@@ -128,7 +143,7 @@
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: #c0392b;
+  color: #CC3333;
   margin-bottom: 1rem;
 }
 
@@ -319,7 +334,7 @@
 }
 
 .book-card-dark .book-card-genre {
-  color: #c0392b;
+  color: #a89a88;
 }
 
 .book-card-dark .book-card-location {
@@ -377,7 +392,7 @@
   font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #c0392b;
+  color: #CC3333;
 }
 
 .book-card-location {
@@ -417,7 +432,7 @@
   border: none;
   outline: none;
   color: #2c2416;
-  caret-color: #c0392b;
+  caret-color: #CC3333;
 }
 
 .search-bar input::placeholder {

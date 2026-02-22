@@ -10,7 +10,7 @@ const colors = [
   { name: 'Primary Text', hex: '#2c2416' },
   { name: 'Secondary Text', hex: '#6b5e4f' },
   { name: 'Text on Dark', hex: '#a89a88' },
-  { name: 'Circuit Red', hex: '#c0392b' },
+  { name: 'Persian Red', hex: '#CC3333' },
   { name: 'Signal Gold', hex: '#d4a017' },
   { name: 'Copper Hover', hex: '#b87333' },
 ]
@@ -32,7 +32,10 @@ export default function StyleSample() {
     <div className="style-sample">
       {/* Header — Dark */}
       <header className="ss-header ss-section-dark">
-        <h1>Noisebridge Library</h1>
+        <div className="ss-header-title-row">
+          <img src="/nb-logo.jpg" alt="Noisebridge" className="ss-header-logo" />
+          <h1>Noisebridge Library</h1>
+        </div>
         <p className="subtitle">Card Catalog Design System &mdash; Style Sample</p>
       </header>
 
