@@ -197,8 +197,13 @@ export default function StyleSample() {
           <h2 className="ss-section-title">Featured Quote</h2>
         </div>
         <div className="quote-card">
-          <p className="quote-text">{quotes[0].text}</p>
-          <p className="quote-attribution">{quotes[0].attribution}</p>
+          <div className="catalog-card-header">
+            <span className="catalog-card-label">Community Wisdom</span>
+          </div>
+          <div className="quote-card-body">
+            <p className="quote-text">{quotes[0].text}</p>
+            <p className="quote-attribution">{quotes[0].attribution}</p>
+          </div>
         </div>
       </section>
 

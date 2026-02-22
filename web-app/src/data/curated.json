@@ -1,8 +1,8 @@
 {
   "quotes": [
     {
-      "text": "A hackerspace is not a place. It's a state of mind.",
-      "attribution": "Noisebridge Community Wisdom"
+      "text": "The Analytical Engine weaves algebraic patterns, just as the Jacquard loom weaves flowers and leaves.",
+      "attribution": "Ada Lovelace"
     },
     {
       "text": "The best way to predict the future is to invent it.",
@@ -21,7 +21,7 @@
       "title": "3D Game Engine Design",
       "author": "David H. Eberly",
       "location": "Shelf C-1",
-      "coverUrl": "https://books.google.com/books/content?id=xUmrBgAAQBAJ&printsec=frontcover&img=1&zoom=1",
+      "coverUrl": "https://covers.openlibrary.org/b/isbn/1558605932-L.jpg",
       "genre": "Computer Science"
     },
     {
@@ -35,14 +35,14 @@
       "title": "Gödel, Escher, Bach",
       "author": "Douglas R. Hofstadter",
       "location": "Shelf A-1",
-      "coverUrl": "https://books.google.com/books/content?id=iDBGDwAAQBAJ&printsec=frontcover&img=1&zoom=1",
+      "coverUrl": "https://covers.openlibrary.org/b/isbn/0465026567-L.jpg",
       "genre": "Mathematics / Philosophy"
     },
     {
       "title": "The Art of Electronics",
       "author": "Paul Horowitz, Winfield Hill",
       "location": "Shelf D-2",
-      "coverUrl": "https://books.google.com/books/content?id=bkOMDgAAQBAJ&printsec=frontcover&img=1&zoom=1",
+      "coverUrl": "https://covers.openlibrary.org/b/isbn/0521809266-L.jpg",
       "genre": "Electronics"
     },
     {

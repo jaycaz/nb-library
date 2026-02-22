@@ -538,42 +538,46 @@
 
 /* === 7. Quote Card === */
 .quote-card {
-  max-width: 520px;
+  max-width: 600px;
   margin: 0 auto;
   background: #faf8f3;
   border: 1px solid #c4b8a4;
   border-radius: 2px;
-  padding: 2rem;
+  overflow: hidden;
   box-shadow:
-    3px 3px 0 #e0d6c8,
-    6px 6px 0 #d4c9b8;
+    3px 3px 0 #d4c9b8,
+    6px 6px 0 #c4b8a4;
+}
+
+.quote-card-body {
+  padding: 1.25rem 1.5rem 1.5rem;
   position: relative;
 }
 
-.quote-card::before {
+.quote-card-body::before {
   content: '\201C';
   font-family: 'Archivo', sans-serif;
   font-weight: 900;
-  font-size: 4rem;
+  font-size: 2rem;
   color: #d4a017;
   position: absolute;
-  top: 0.25rem;
-  left: 0.75rem;
+  top: 0.75rem;
+  left: 1rem;
   line-height: 1;
 }
 
 .quote-text {
   font-family: 'Archivo', sans-serif;
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-weight: 500;
   line-height: 1.6;
   margin-bottom: 1rem;
-  padding-left: 0.5rem;
+  padding-left: 1.25rem;
 }
 
 .quote-attribution {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: #6b5e4f;
   text-transform: uppercase;
   letter-spacing: 0.1em;
