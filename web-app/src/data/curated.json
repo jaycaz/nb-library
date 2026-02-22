@@ -1,0 +1,56 @@
+{
+  "quotes": [
+    {
+      "text": "The Analytical Engine weaves algebraic patterns, just as the Jacquard loom weaves flowers and leaves.",
+      "attribution": "Ada Lovelace"
+    },
+    {
+      "text": "The best way to predict the future is to invent it.",
+      "attribution": "Alan Kay"
+    }
+  ],
+  "featuredBooks": [
+    {
+      "title": "Surely You're Joking, Mr. Feynman!",
+      "author": "Richard P. Feynman",
+      "location": "Shelf A-3",
+      "coverUrl": "https://books.google.com/books/content?id=_gA_DwAAQBAJ&printsec=frontcover&img=1&zoom=1",
+      "genre": "Science / Memoir"
+    },
+    {
+      "title": "3D Game Engine Design",
+      "author": "David H. Eberly",
+      "location": "Shelf C-1",
+      "coverUrl": "https://covers.openlibrary.org/b/isbn/1558605932-L.jpg",
+      "genre": "Computer Science"
+    },
+    {
+      "title": "The Pragmatic Programmer",
+      "author": "David Thomas, Andrew Hunt",
+      "location": "Shelf B-2",
+      "coverUrl": "https://books.google.com/books/content?id=LhOlDwAAQBAJ&printsec=frontcover&img=1&zoom=1",
+      "genre": "Software Engineering"
+    },
+    {
+      "title": "Gödel, Escher, Bach",
+      "author": "Douglas R. Hofstadter",
+      "location": "Shelf A-1",
+      "coverUrl": "https://covers.openlibrary.org/b/isbn/0465026567-L.jpg",
+      "genre": "Mathematics / Philosophy"
+    },
+    {
+      "title": "The Art of Electronics",
+      "author": "Paul Horowitz, Winfield Hill",
+      "location": "Shelf D-2",
+      "coverUrl": "https://covers.openlibrary.org/b/isbn/0521809266-L.jpg",
+      "genre": "Electronics"
+    },
+    {
+      "title": "Structure and Interpretation of Computer Programs",
+      "author": "Harold Abelson, Gerald Jay Sussman",
+      "location": "Shelf B-1",
+      "coverUrl": "https://books.google.com/books/content?id=iL34DwAAQBAJ&printsec=frontcover&img=1&zoom=1",
+      "genre": "Computer Science"
+    }
+  ]
+}
