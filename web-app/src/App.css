@@ -11,7 +11,6 @@
   color: var(--chrome-text);
   padding: 2.5rem 1.5rem;
   border-bottom: 3px solid var(--accent-gold);
-  transition: background-color 0.2s ease;
 }
 
 .header-content {
@@ -82,7 +81,7 @@
   border-radius: 2px;
   cursor: pointer;
   box-shadow: 3px 3px 0 var(--chrome-btn-shadow);
-  transition: transform 0.1s ease, box-shadow 0.1s ease, color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
   white-space: nowrap;
 }
 
@@ -112,7 +111,7 @@
   border-radius: 2px;
   cursor: pointer;
   box-shadow: 3px 3px 0 var(--chrome-btn-shadow);
-  transition: transform 0.1s ease, box-shadow 0.1s ease, color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
   flex-shrink: 0;
 }
 
@@ -144,7 +143,6 @@
   border-top: 3px solid var(--accent-gold);
   padding: 2rem 1.5rem;
   text-align: center;
-  transition: background-color 0.2s ease;
 }
 
 .app-footer p {
