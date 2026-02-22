@@ -39,8 +39,8 @@ export default function StyleSample() {
         <h2 className="ss-section-title">Typography Specimen</h2>
         <div className="type-specimen">
           <div className="type-family">
-            <p className="type-family-name">Special Elite &mdash; Headings &amp; Hero Text</p>
-            <div className="type-sizes type-sample-special-elite">
+            <p className="type-family-name">Archivo Black &mdash; Headings &amp; Hero Text</p>
+            <div className="type-sizes type-sample-archivo">
               <p><span className="size-label">32px</span> <span style={{ fontSize: '2rem' }}>The stacks are open</span></p>
               <p><span className="size-label">24px</span> <span style={{ fontSize: '1.5rem' }}>Browse the collection at Noisebridge</span></p>
               <p><span className="size-label">18px</span> <span style={{ fontSize: '1.125rem' }}>Every book tells a story about who we are</span></p>

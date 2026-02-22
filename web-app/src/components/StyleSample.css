@@ -31,9 +31,10 @@
 }
 
 .ss-header h1 {
-  font-family: 'Special Elite', cursive;
+  font-family: 'Archivo Black', sans-serif;
   font-size: 2.5rem;
-  letter-spacing: 0.04em;
+  letter-spacing: -0.01em;
+  text-transform: lowercase;
   margin-bottom: 0.25rem;
 }
 
@@ -67,8 +68,10 @@
 }
 
 .ss-section-title {
-  font-family: 'Special Elite', cursive;
+  font-family: 'Archivo Black', sans-serif;
   font-size: 1.6rem;
+  text-transform: lowercase;
+  letter-spacing: -0.01em;
   margin-bottom: 1.5rem;
 }
 
@@ -95,8 +98,8 @@
   margin-bottom: 1rem;
 }
 
-.type-sample-special-elite {
-  font-family: 'Special Elite', cursive;
+.type-sample-archivo {
+  font-family: 'Archivo Black', sans-serif;
 }
 
 .type-sample-courier-prime {
@@ -263,8 +266,10 @@
 }
 
 .book-card-title {
-  font-family: 'Special Elite', cursive;
-  font-size: 1rem;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 0.95rem;
+  text-transform: lowercase;
+  letter-spacing: -0.01em;
   margin-bottom: 0.25rem;
 }
 
@@ -362,7 +367,7 @@
 
 .quote-card::before {
   content: '\201C';
-  font-family: 'Special Elite', cursive;
+  font-family: 'Archivo Black', sans-serif;
   font-size: 4rem;
   color: #d4c9b8;
   position: absolute;
@@ -372,8 +377,9 @@
 }
 
 .quote-text {
-  font-family: 'Special Elite', cursive;
-  font-size: 1.25rem;
+  font-family: 'Courier Prime', monospace;
+  font-size: 1.15rem;
+  font-weight: 700;
   line-height: 1.6;
   margin-bottom: 1rem;
   padding-left: 0.5rem;
@@ -433,8 +439,8 @@
   background: #faf8f3;
   border: 1px solid #c4b8a4;
   padding: 1rem 1.25rem;
-  font-family: 'Special Elite', cursive;
-  font-size: 0.9rem;
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.85rem;
   line-height: 1.5;
   max-width: 220px;
   box-shadow: 2px 3px 8px rgba(44, 36, 22, 0.2);
