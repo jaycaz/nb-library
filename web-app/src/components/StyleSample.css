@@ -356,6 +356,13 @@
   background: #1a1a1a;
   border-color: #3d3d3d;
   color: #a89a88;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  cursor: pointer;
+}
+
+.book-card-dark .book-card-location:hover {
+  color: #b87333;
+  border-color: #b87333;
 }
 
 .book-card-dark .book-card-body {
@@ -479,6 +486,7 @@
 
 .catalog-input:focus {
   caret-shape: block;
+  border-bottom-color: #b87333;
 }
 
 .catalog-count {
@@ -519,7 +527,8 @@
 
 .catalog-map-button:hover {
   transform: translate(-1px, -1px);
-  box-shadow: 4px 4px 0 #2c2416;
+  box-shadow: 4px 4px 0 #b87333;
+  border-color: #b87333;
 }
 
 .catalog-map-button:active {
