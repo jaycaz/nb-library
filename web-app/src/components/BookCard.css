@@ -1,11 +1,11 @@
 .book-card {
-  background: #faf8f3;
-  border: 1px solid #c4b8a4;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
   border-radius: 2px;
   overflow: hidden;
   box-shadow:
-    2px 2px 0 #e0d6c8,
-    4px 4px 0 #d4c9b8;
+    2px 2px 0 var(--shadow-1),
+    4px 4px 0 var(--shadow-2);
   transition: transform 0.15s ease;
   display: flex;
   flex-direction: column;
@@ -20,7 +20,7 @@
   position: relative;
   width: 100%;
   aspect-ratio: 2/3;
-  background: #eee8db;
+  background: var(--bg-cover);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -35,7 +35,7 @@
 }
 
 .book-cover-placeholder {
-  color: #c4b8a4;
+  color: var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -116,7 +116,7 @@
   flex-direction: column;
   gap: 0.5rem;
   flex: 1;
-  border-top: 1px dashed #d4c9b8;
+  border-top: 1px dashed var(--border-subtle);
 }
 
 .book-title {
@@ -124,7 +124,7 @@
   font-size: 1rem;
   font-weight: 700;
   line-height: 1.3;
-  color: #2c2416;
+  color: var(--text-primary);
   letter-spacing: -0.01em;
   margin: 0;
   display: -webkit-box;
@@ -138,14 +138,14 @@
   font-size: 0.9rem;
   font-weight: 400;
   font-style: italic;
-  color: #6b5e4f;
+  color: var(--text-secondary);
   margin: 0;
 }
 
 .book-series {
   font-family: 'Archivo', sans-serif;
   font-size: 0.875rem;
-  color: #6b5e4f;
+  color: var(--text-secondary);
   font-style: italic;
   margin: 0;
 }
@@ -162,18 +162,18 @@
   font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #6b5e4f;
+  color: var(--text-secondary);
   width: fit-content;
 }
 
 .book-location {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.65rem;
-  background: #f5f0e8;
+  background: var(--bg-primary);
   padding: 0.15rem 0.4rem;
-  border: 1px solid #d4c9b8;
+  border: 1px solid var(--border-subtle);
   border-radius: 1px;
-  color: #6b5e4f;
+  color: var(--text-secondary);
   cursor: pointer;
   transition: color 0.15s ease, border-color 0.15s ease;
   display: inline-flex;
@@ -184,26 +184,26 @@
 }
 
 .book-location:hover {
-  color: #b87333;
-  border-color: #b87333;
+  color: var(--accent-copper);
+  border-color: var(--accent-copper);
 }
 
 .book-location:active {
-  color: #b87333;
-  border-color: #b87333;
+  color: var(--accent-copper);
+  border-color: var(--accent-copper);
 }
 
 .book-year {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.7rem;
-  color: #a89a88;
+  color: var(--text-muted);
   margin: 0;
 }
 
 .book-isbn {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.65rem;
-  color: #a89a88;
+  color: var(--text-muted);
   margin: 0;
   margin-top: auto;
 }

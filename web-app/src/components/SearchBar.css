@@ -7,19 +7,19 @@
 }
 
 .catalog-card {
-  background: #faf8f3;
-  border: 1px solid #c4b8a4;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
   border-radius: 2px;
   overflow: hidden;
   box-shadow:
-    3px 3px 0 #d4c9b8,
-    6px 6px 0 #c4b8a4;
+    3px 3px 0 var(--border-subtle),
+    6px 6px 0 var(--border);
 }
 
 .catalog-card-header {
   padding: 0.5rem 1.25rem;
-  background: #f0e8da;
-  border-bottom: 1px dashed #c4b8a4;
+  background: var(--bg-header);
+  border-bottom: 1px dashed var(--border);
 }
 
 .catalog-card-label {
@@ -28,12 +28,12 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: #CC3333;
+  color: var(--accent-red);
 }
 
 .catalog-card-body {
   padding: 1rem 1.25rem 1.25rem;
-  background: #faf8f3;
+  background: var(--bg-secondary);
 }
 
 .search-input-wrapper {
@@ -46,7 +46,7 @@
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  color: #a89a88;
+  color: var(--text-muted);
   pointer-events: none;
 }
 
@@ -59,21 +59,21 @@
   line-height: 1.6;
   background: transparent;
   border: none;
-  border-bottom: 1px solid #c4b8a4;
+  border-bottom: 1px solid var(--border);
   border-radius: 0;
   outline: none;
-  color: #2c2416;
-  caret-color: #CC3333;
+  color: var(--text-primary);
+  caret-color: var(--accent-red);
 }
 
 .search-input::placeholder {
-  color: #a89a88;
+  color: var(--text-muted);
   font-style: italic;
   font-family: 'Archivo', sans-serif;
 }
 
 .search-input:focus {
-  border-bottom-color: #b87333;
+  border-bottom-color: var(--accent-copper);
   box-shadow: none;
 }
 
@@ -85,7 +85,7 @@
   background: none;
   border: none;
   font-size: 1.5rem;
-  color: #a89a88;
+  color: var(--text-muted);
   cursor: pointer;
   padding: 0;
   width: 1.75rem;
@@ -98,7 +98,7 @@
 }
 
 .clear-button:hover {
-  color: #b87333;
+  color: var(--accent-copper);
   background: none;
 }
 
@@ -108,7 +108,7 @@
   font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: #6b5e4f;
+  color: var(--text-secondary);
   padding-left: 0.1rem;
   text-align: left;
 }

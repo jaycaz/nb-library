@@ -5,12 +5,13 @@
 }
 
 .app-header {
-  background-color: #1a1a1a;
+  background-color: var(--chrome-bg);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E");
   background-size: 200px 200px;
-  color: #f5f0e8;
+  color: var(--chrome-text);
   padding: 2.5rem 1.5rem;
-  border-bottom: 3px solid #d4a017;
+  border-bottom: 3px solid var(--accent-gold);
+  transition: background-color 0.2s ease;
 }
 
 .header-content {
@@ -46,16 +47,23 @@
   margin: 0;
   letter-spacing: -0.01em;
   text-transform: lowercase;
-  color: #f5f0e8;
+  color: var(--chrome-text);
 }
 
 .app-subtitle {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.85rem;
   margin: 0;
-  color: #a89a88;
+  color: var(--chrome-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.12em;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
 }
 
 .map-button {
@@ -68,25 +76,55 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #2c2416;
-  background: #faf8f3;
-  border: 1px solid #2c2416;
+  color: var(--chrome-btn-text);
+  background: var(--chrome-btn-bg);
+  border: 1px solid var(--chrome-btn-border);
   border-radius: 2px;
   cursor: pointer;
-  box-shadow: 3px 3px 0 #2c2416;
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  box-shadow: 3px 3px 0 var(--chrome-btn-shadow);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
   white-space: nowrap;
 }
 
 .map-button:hover {
   transform: translate(-1px, -1px);
-  box-shadow: 4px 4px 0 #b87333;
-  border-color: #b87333;
+  box-shadow: 4px 4px 0 var(--accent-copper);
+  border-color: var(--accent-copper);
+  color: var(--chrome-btn-text);
 }
 
 .map-button:active {
   transform: translate(2px, 2px);
-  box-shadow: 1px 1px 0 #2c2416;
+  box-shadow: 1px 1px 0 var(--chrome-btn-shadow);
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--chrome-btn-text);
+  background: var(--chrome-btn-bg);
+  border: 1px solid var(--chrome-btn-border);
+  border-radius: 2px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--chrome-btn-shadow);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--accent-copper);
+  border-color: var(--accent-copper);
+}
+
+.theme-toggle:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--chrome-btn-shadow);
 }
 
 .app-main {
@@ -100,19 +138,20 @@
 }
 
 .app-footer {
-  background-color: #1a1a1a;
+  background-color: var(--chrome-bg);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E");
   background-size: 200px 200px;
-  border-top: 3px solid #d4a017;
+  border-top: 3px solid var(--accent-gold);
   padding: 2rem 1.5rem;
   text-align: center;
+  transition: background-color 0.2s ease;
 }
 
 .app-footer p {
   margin: 0;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.7rem;
-  color: #a89a88;
+  color: var(--chrome-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.12em;
 }
@@ -143,8 +182,12 @@
     gap: 16px;
   }
 
-  .map-button {
+  .header-actions {
     width: 100%;
+  }
+
+  .map-button {
+    flex: 1;
     justify-content: center;
     padding: 0.6rem 1rem;
     font-size: 0.75rem;
