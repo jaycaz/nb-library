@@ -13,7 +13,7 @@
   background-color: #f5f0e8;
   color: #2c2416;
   min-height: 100vh;
-  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   line-height: 1.6;
 
   /* Paper grain texture */
@@ -100,10 +100,6 @@
 
 .type-sample-archivo {
   font-family: 'Archivo Black', sans-serif;
-}
-
-.type-sample-courier-prime {
-  font-family: 'Courier Prime', monospace;
 }
 
 .type-sample-ibm-plex {
@@ -274,7 +270,8 @@
 }
 
 .book-card-author {
-  font-family: 'Courier Prime', monospace;
+  font-family: 'IBM Plex Mono', monospace;
+  font-style: italic;
   font-size: 0.85rem;
   color: #6b5e4f;
   margin-bottom: 0.5rem;
@@ -324,8 +321,8 @@
 .search-bar input {
   width: 100%;
   padding: 1rem 1.25rem;
-  font-family: 'Courier Prime', monospace;
-  font-size: 1.1rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1rem;
   background: transparent;
   border: none;
   outline: none;
@@ -377,9 +374,9 @@
 }
 
 .quote-text {
-  font-family: 'Courier Prime', monospace;
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.05rem;
+  font-weight: 500;
   line-height: 1.6;
   margin-bottom: 1rem;
   padding-left: 0.5rem;
@@ -439,8 +436,8 @@
   background: #faf8f3;
   border: 1px solid #c4b8a4;
   padding: 1rem 1.25rem;
-  font-family: 'Courier Prime', monospace;
-  font-size: 0.85rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.8rem;
   line-height: 1.5;
   max-width: 220px;
   box-shadow: 2px 3px 8px rgba(44, 36, 22, 0.2);
