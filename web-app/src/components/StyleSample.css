@@ -13,7 +13,8 @@
   background-color: #f5f0e8;
   color: #2c2416;
   min-height: 100vh;
-  font-family: 'Zilla Slab', serif;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 400;
   line-height: 1.6;
 
   /* Paper grain texture */
@@ -31,10 +32,11 @@
 }
 
 .ss-header h1 {
-  font-family: 'Zilla Slab', serif;
-  font-weight: 700;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 900;
   font-size: 2.5rem;
   letter-spacing: -0.01em;
+  text-transform: lowercase;
   margin-bottom: 0.25rem;
 }
 
@@ -68,9 +70,10 @@
 }
 
 .ss-section-title {
-  font-family: 'Zilla Slab', serif;
-  font-weight: 600;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
   font-size: 1.6rem;
+  text-transform: lowercase;
   letter-spacing: -0.01em;
   margin-bottom: 1.5rem;
 }
@@ -98,8 +101,8 @@
   margin-bottom: 1rem;
 }
 
-.type-sample-zilla {
-  font-family: 'Zilla Slab', serif;
+.type-sample-archivo {
+  font-family: 'Archivo', sans-serif;
 }
 
 .type-sample-ibm-plex {
@@ -262,15 +265,15 @@
 }
 
 .book-card-title {
-  font-family: 'Zilla Slab', serif;
-  font-weight: 600;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
   font-size: 1rem;
   letter-spacing: -0.01em;
   margin-bottom: 0.25rem;
 }
 
 .book-card-author {
-  font-family: 'Zilla Slab', serif;
+  font-family: 'Archivo', sans-serif;
   font-weight: 400;
   font-style: italic;
   font-size: 0.9rem;
@@ -322,8 +325,9 @@
 .search-bar input {
   width: 100%;
   padding: 1rem 1.25rem;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 1rem;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 500;
+  font-size: 1.05rem;
   background: transparent;
   border: none;
   outline: none;
@@ -365,7 +369,8 @@
 
 .quote-card::before {
   content: '\201C';
-  font-family: 'Zilla Slab', serif;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 900;
   font-size: 4rem;
   color: #d4c9b8;
   position: absolute;
@@ -375,8 +380,8 @@
 }
 
 .quote-text {
-  font-family: 'Zilla Slab', serif;
-  font-size: 1.25rem;
+  font-family: 'Archivo', sans-serif;
+  font-size: 1.15rem;
   font-weight: 500;
   line-height: 1.6;
   margin-bottom: 1rem;
@@ -437,9 +442,9 @@
   background: #faf8f3;
   border: 1px solid #c4b8a4;
   padding: 1rem 1.25rem;
-  font-family: 'Zilla Slab', serif;
+  font-family: 'Archivo', sans-serif;
   font-weight: 400;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   line-height: 1.5;
   max-width: 220px;
   box-shadow: 2px 3px 8px rgba(44, 36, 22, 0.2);
