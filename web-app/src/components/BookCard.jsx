@@ -113,6 +113,9 @@ const BookCard = ({ book }) => {
         ) : book.Series ? (
           <p className="book-series">{book.Series}</p>
         ) : null}
+        {book.Year && (
+          <p className="book-year">{book.Year}</p>
+        )}
         <div className="book-meta">
           {book.Genre && (
             <span className="book-genre">{book.Genre}</span>
@@ -127,16 +130,10 @@ const BookCard = ({ book }) => {
               }}
               aria-label={`View location of shelf ${book['Shelf Location']} on map`}
             >
-              {book['Shelf Location']}
+              Shelf {book['Shelf Location']}
             </button>
           )}
         </div>
-        {book.Year && (
-          <p className="book-year">{book.Year}</p>
-        )}
-        {book.ISBN && book.ISBN !== 'N/A' && (
-          <p className="book-isbn">{book.ISBN}</p>
-        )}
       </div>
 
       <LocationPopover
