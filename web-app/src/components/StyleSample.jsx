@@ -39,21 +39,17 @@ export default function StyleSample() {
         <h2 className="ss-section-title">Typography Specimen</h2>
         <div className="type-specimen">
           <div className="type-family">
-            <p className="type-family-name">Archivo Black &mdash; Headings &amp; Hero Text</p>
-            <div className="type-sizes type-sample-archivo">
-              <p><span className="size-label">32px</span> <span style={{ fontSize: '2rem' }}>The stacks are open</span></p>
-              <p><span className="size-label">24px</span> <span style={{ fontSize: '1.5rem' }}>Browse the collection at Noisebridge</span></p>
-              <p><span className="size-label">18px</span> <span style={{ fontSize: '1.125rem' }}>Every book tells a story about who we are</span></p>
-              <p><span className="size-label">14px</span> <span style={{ fontSize: '0.875rem' }}>Catalog entry no. 1138 — checked out — due back Tuesday</span></p>
-            </div>
-          </div>
-
-          <div className="type-family">
-            <p className="type-family-name">Courier Prime &mdash; Body Text &amp; Descriptions</p>
-            <div className="type-sizes type-sample-courier-prime">
-              <p><span className="size-label">18px</span> <span style={{ fontSize: '1.125rem' }}>A shared library for the curious and the bold.</span></p>
-              <p><span className="size-label">16px</span> <span style={{ fontSize: '1rem' }}>Noisebridge maintains a collection of over 1,100 books spanning electronics, programming, mathematics, science fiction, and the liberal arts.</span></p>
-              <p><span className="size-label">14px</span> <span style={{ fontSize: '0.875rem' }}>Books may be borrowed by any member. Please return them to the shelf when finished. If a book changes your life, leave a note in the margin.</span></p>
+            <p className="type-family-name">Zilla Slab &mdash; Headings, Hero Text &amp; Body</p>
+            <div className="type-sizes type-sample-zilla">
+              <p><span className="size-label">700</span> <span style={{ fontSize: '2.5rem', fontWeight: 700 }}>The stacks are open</span></p>
+              <p><span className="size-label">600</span> <span style={{ fontSize: '2.5rem', fontWeight: 600 }}>The stacks are open</span></p>
+              <p><span className="size-label">500</span> <span style={{ fontSize: '2.5rem', fontWeight: 500 }}>The stacks are open</span></p>
+              <p style={{ marginTop: '0.75rem' }}><span className="size-label">700</span> <span style={{ fontSize: '1.5rem', fontWeight: 700 }}>Browse the collection at Noisebridge</span></p>
+              <p><span className="size-label">600</span> <span style={{ fontSize: '1.5rem', fontWeight: 600 }}>Browse the collection at Noisebridge</span></p>
+              <p style={{ marginTop: '0.75rem' }}><span className="size-label">500</span> <span style={{ fontSize: '1.125rem', fontWeight: 500 }}>Every book tells a story about who we are</span></p>
+              <p><span className="size-label">400</span> <span style={{ fontSize: '1rem', fontWeight: 400 }}>Noisebridge maintains a collection of over 1,100 books spanning electronics, programming, mathematics, science fiction, and the liberal arts.</span></p>
+              <p><span className="size-label">300</span> <span style={{ fontSize: '0.9rem', fontWeight: 300 }}>Books may be borrowed by any member. Please return them to the shelf when finished. If a book changes your life, leave a note in the margin.</span></p>
+              <p><span className="size-label">400i</span> <span style={{ fontSize: '0.9rem', fontWeight: 400, fontStyle: 'italic' }}>Richard P. Feynman &bull; Douglas R. Hofstadter &bull; Harold Abelson</span></p>
             </div>
           </div>
 
