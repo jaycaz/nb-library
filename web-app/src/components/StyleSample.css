@@ -1,0 +1,490 @@
+/* === Card Catalog Design System — Style Sample === */
+
+/* Reset & Base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.style-sample {
+  background-color: #f5f0e8;
+  color: #2c2416;
+  min-height: 100vh;
+  font-family: 'Courier Prime', 'Courier New', monospace;
+  line-height: 1.6;
+
+  /* Paper grain texture */
+  background-image:
+    radial-gradient(circle, #d4c9b8 0.5px, transparent 0.5px);
+  background-size: 16px 16px;
+}
+
+/* Page header */
+.ss-header {
+  text-align: center;
+  padding: 3rem 1.5rem 2rem;
+  border-bottom: 2px solid #2c2416;
+  margin-bottom: 0;
+}
+
+.ss-header h1 {
+  font-family: 'Special Elite', cursive;
+  font-size: 2.5rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.25rem;
+}
+
+.ss-header .subtitle {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.85rem;
+  color: #6b5e4f;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+/* Section containers */
+.ss-section {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  border-bottom: 1px dashed #c4b8a4;
+}
+
+.ss-section:last-child {
+  border-bottom: none;
+}
+
+.ss-section-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #6b5e4f;
+  margin-bottom: 0.5rem;
+}
+
+.ss-section-title {
+  font-family: 'Special Elite', cursive;
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+}
+
+/* === 1. Typography Specimen === */
+.type-specimen {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.type-family {
+  padding: 1.5rem;
+  background: #faf8f3;
+  border: 1px solid #d4c9b8;
+  border-radius: 2px;
+}
+
+.type-family-name {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #2a6e6e;
+  margin-bottom: 1rem;
+}
+
+.type-sample-special-elite {
+  font-family: 'Special Elite', cursive;
+}
+
+.type-sample-courier-prime {
+  font-family: 'Courier Prime', monospace;
+}
+
+.type-sample-ibm-plex {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.type-sizes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.type-sizes .size-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  color: #6b5e4f;
+  min-width: 3rem;
+  display: inline-block;
+}
+
+/* === 2. Color Palette === */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
+}
+
+.color-chip {
+  border: 1px solid #d4c9b8;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.color-chip-swatch {
+  height: 80px;
+  width: 100%;
+}
+
+.color-chip-info {
+  padding: 0.5rem 0.6rem;
+  background: #faf8f3;
+}
+
+.color-chip-name {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.15rem;
+}
+
+.color-chip-hex {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  color: #6b5e4f;
+}
+
+/* === 3. Texture Samples === */
+.texture-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .texture-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.texture-sample {
+  height: 160px;
+  border-radius: 2px;
+  border: 1px solid #d4c9b8;
+  display: flex;
+  align-items: flex-end;
+  padding: 0.75rem;
+}
+
+.texture-sample-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: rgba(250, 248, 243, 0.85);
+  padding: 0.2rem 0.5rem;
+  border-radius: 1px;
+}
+
+.texture-paper-grain {
+  background-color: #f5f0e8;
+  background-image:
+    radial-gradient(circle, #d4c9b8 0.5px, transparent 0.5px);
+  background-size: 16px 16px;
+}
+
+.texture-dot-grid {
+  background-color: #faf8f3;
+  background-image:
+    radial-gradient(circle, #c4b8a4 0.8px, transparent 0.8px);
+  background-size: 24px 24px;
+}
+
+.texture-flat {
+  background-color: #faf8f3;
+}
+
+.texture-linen {
+  background-color: #f0e8da;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(180, 165, 140, 0.08) 2px,
+      rgba(180, 165, 140, 0.08) 3px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(180, 165, 140, 0.06) 2px,
+      rgba(180, 165, 140, 0.06) 3px
+    );
+}
+
+/* === 4. Book Card Mockups === */
+.book-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.book-card {
+  background: #faf8f3;
+  border: 1px solid #c4b8a4;
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow:
+    2px 2px 0 #e0d6c8,
+    4px 4px 0 #d4c9b8;
+  transition: transform 0.15s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-2px);
+}
+
+.book-card-cover {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  background: #eee8db;
+  padding: 0.75rem;
+}
+
+.book-card-body {
+  padding: 1rem;
+  border-top: 1px dashed #d4c9b8;
+}
+
+.book-card-title {
+  font-family: 'Special Elite', cursive;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.book-card-author {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.85rem;
+  color: #6b5e4f;
+  margin-bottom: 0.5rem;
+}
+
+.book-card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.book-card-genre {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #2a6e6e;
+}
+
+.book-card-location {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  background: #f5f0e8;
+  padding: 0.15rem 0.4rem;
+  border: 1px solid #d4c9b8;
+  border-radius: 1px;
+  color: #6b5e4f;
+}
+
+/* === 5. Search Bar === */
+.search-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.search-bar {
+  position: relative;
+  background: #faf8f3;
+  border: 2px solid #2c2416;
+  border-radius: 2px;
+  padding: 0;
+  box-shadow:
+    inset 2px 2px 4px rgba(44, 36, 22, 0.1),
+    3px 3px 0 #d4c9b8;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  font-family: 'Courier Prime', monospace;
+  font-size: 1.1rem;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #2c2416;
+  caret-color: #2a6e6e;
+}
+
+.search-bar input::placeholder {
+  color: #a89a88;
+  font-style: italic;
+}
+
+.search-hint {
+  text-align: center;
+  margin-top: 0.75rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  color: #6b5e4f;
+}
+
+/* Blinking block cursor effect */
+.search-bar input:focus {
+  caret-shape: block;
+}
+
+/* === 6. Quote Card === */
+.quote-card {
+  max-width: 520px;
+  margin: 0 auto;
+  background: #faf8f3;
+  border: 1px solid #c4b8a4;
+  border-radius: 2px;
+  padding: 2rem;
+  box-shadow:
+    3px 3px 0 #e0d6c8,
+    6px 6px 0 #d4c9b8;
+  position: relative;
+}
+
+.quote-card::before {
+  content: '\201C';
+  font-family: 'Special Elite', cursive;
+  font-size: 4rem;
+  color: #d4c9b8;
+  position: absolute;
+  top: 0.25rem;
+  left: 0.75rem;
+  line-height: 1;
+}
+
+.quote-text {
+  font-family: 'Special Elite', cursive;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  padding-left: 0.5rem;
+}
+
+.quote-attribution {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  color: #6b5e4f;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: right;
+  border-top: 1px dashed #d4c9b8;
+  padding-top: 0.75rem;
+}
+
+/* === 7. Collage Preview === */
+.collage-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  position: relative;
+  padding: 2rem;
+}
+
+.collage-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  height: 420px;
+}
+
+.collage-item {
+  position: absolute;
+  border: 3px solid #faf8f3;
+  box-shadow: 2px 3px 8px rgba(44, 36, 22, 0.25);
+  border-radius: 2px;
+  overflow: hidden;
+  transition: transform 0.2s ease, z-index 0s;
+}
+
+.collage-item:hover {
+  z-index: 10 !important;
+  transform: scale(1.08) !important;
+}
+
+.collage-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.collage-quote {
+  position: absolute;
+  background: #faf8f3;
+  border: 1px solid #c4b8a4;
+  padding: 1rem 1.25rem;
+  font-family: 'Special Elite', cursive;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  max-width: 220px;
+  box-shadow: 2px 3px 8px rgba(44, 36, 22, 0.2);
+}
+
+.collage-quote-attr {
+  display: block;
+  margin-top: 0.4rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  color: #6b5e4f;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* === Footer === */
+.ss-footer {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  border-top: 2px solid #2c2416;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  color: #6b5e4f;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+/* === Responsive === */
+@media (max-width: 600px) {
+  .ss-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .ss-section {
+    padding: 2rem 1rem;
+  }
+
+  .book-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .color-grid {
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  }
+
+  .collage-wrapper {
+    height: 350px;
+  }
+
+  .collage-item {
+    transform: rotate(0deg) !important;
+  }
+}
