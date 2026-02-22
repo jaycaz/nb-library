@@ -23,11 +23,34 @@
   background-size: 16px 16px;
 }
 
+/* === Dark section modifier === */
+.ss-section-dark {
+  background: #1a1a1a;
+  background-image: none;
+  color: #f5f0e8;
+  border-bottom: 1px solid #3d3d3d;
+}
+
+.ss-section-dark .ss-section-label {
+  color: #a89a88;
+}
+
+.ss-section-dark .ss-section-title {
+  color: #f5f0e8;
+}
+
+/* Inner container for dark full-bleed sections */
+.ss-section-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
 /* Page header */
 .ss-header {
   text-align: center;
   padding: 3rem 1.5rem 2rem;
-  border-bottom: 2px solid #2c2416;
+  border-bottom: 3px solid #d4a017;
   margin-bottom: 0;
 }
 
@@ -38,12 +61,13 @@
   letter-spacing: -0.01em;
   text-transform: lowercase;
   margin-bottom: 0.25rem;
+  color: #f5f0e8;
 }
 
 .ss-header .subtitle {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.85rem;
-  color: #6b5e4f;
+  color: #a89a88;
   text-transform: uppercase;
   letter-spacing: 0.12em;
 }
@@ -54,6 +78,13 @@
   margin: 0 auto;
   padding: 3rem 1.5rem;
   border-bottom: 1px dashed #c4b8a4;
+}
+
+/* Dark sections are full-bleed — override max-width */
+.ss-section.ss-section-dark {
+  max-width: none;
+  padding: 0;
+  margin: 0;
 }
 
 .ss-section:last-child {
@@ -97,7 +128,7 @@
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: #2a6e6e;
+  color: #c0392b;
   margin-bottom: 1rem;
 }
 
@@ -190,6 +221,12 @@
   background: rgba(250, 248, 243, 0.85);
   padding: 0.2rem 0.5rem;
   border-radius: 1px;
+  color: #2c2416;
+}
+
+.texture-sample-label-dark {
+  background: rgba(26, 26, 26, 0.85);
+  color: #f5f0e8;
 }
 
 .texture-paper-grain {
@@ -229,6 +266,19 @@
     );
 }
 
+.texture-dark-grain {
+  background-color: #1a1a1a;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.06) 0.5px, transparent 0.5px);
+  background-size: 16px 16px;
+  border-color: #3d3d3d;
+}
+
+.texture-dark-flat {
+  background-color: #2c2c2c;
+  border-color: #3d3d3d;
+}
+
 /* === 4. Book Card Mockups === */
 .book-cards {
   display: grid;
@@ -251,12 +301,47 @@
   transform: translateY(-2px);
 }
 
+/* Dark book card variant */
+.book-card-dark {
+  background: #2c2c2c;
+  border: 1px solid #3d3d3d;
+  box-shadow:
+    2px 2px 0 #111,
+    4px 4px 0 #0a0a0a;
+}
+
+.book-card-dark .book-card-title {
+  color: #f5f0e8;
+}
+
+.book-card-dark .book-card-author {
+  color: #a89a88;
+}
+
+.book-card-dark .book-card-genre {
+  color: #c0392b;
+}
+
+.book-card-dark .book-card-location {
+  background: #1a1a1a;
+  border-color: #3d3d3d;
+  color: #a89a88;
+}
+
+.book-card-dark .book-card-body {
+  border-top: 1px dashed #3d3d3d;
+}
+
 .book-card-cover {
   width: 100%;
   height: 200px;
   object-fit: contain;
   background: #eee8db;
   padding: 0.75rem;
+}
+
+.book-card-dark .book-card-cover {
+  background: #1a1a1a;
 }
 
 .book-card-body {
@@ -292,7 +377,7 @@
   font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #2a6e6e;
+  color: #c0392b;
 }
 
 .book-card-location {
@@ -332,7 +417,7 @@
   border: none;
   outline: none;
   color: #2c2416;
-  caret-color: #2a6e6e;
+  caret-color: #c0392b;
 }
 
 .search-bar input::placeholder {
@@ -372,7 +457,7 @@
   font-family: 'Archivo', sans-serif;
   font-weight: 900;
   font-size: 4rem;
-  color: #d4c9b8;
+  color: #d4a017;
   position: absolute;
   top: 0.25rem;
   left: 0.75rem;
@@ -418,8 +503,8 @@
 
 .collage-item {
   position: absolute;
-  border: 3px solid #faf8f3;
-  box-shadow: 2px 3px 8px rgba(44, 36, 22, 0.25);
+  border: 3px solid #2c2c2c;
+  box-shadow: 2px 3px 16px rgba(0, 0, 0, 0.6);
   border-radius: 2px;
   overflow: hidden;
   transition: transform 0.2s ease, z-index 0s;
@@ -448,6 +533,14 @@
   line-height: 1.5;
   max-width: 220px;
   box-shadow: 2px 3px 8px rgba(44, 36, 22, 0.2);
+  color: #2c2416;
+}
+
+.collage-quote-dark {
+  background: #2c2c2c;
+  border: 1px solid #3d3d3d;
+  color: #f5f0e8;
+  box-shadow: 2px 3px 16px rgba(0, 0, 0, 0.5);
 }
 
 .collage-quote-attr {
@@ -460,14 +553,18 @@
   letter-spacing: 0.08em;
 }
 
+.collage-quote-dark .collage-quote-attr {
+  color: #a89a88;
+}
+
 /* === Footer === */
 .ss-footer {
   text-align: center;
   padding: 2rem 1.5rem;
-  border-top: 2px solid #2c2416;
+  border-top: 3px solid #d4a017;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.7rem;
-  color: #6b5e4f;
+  color: #a89a88;
   text-transform: uppercase;
   letter-spacing: 0.12em;
 }
@@ -479,6 +576,10 @@
   }
 
   .ss-section {
+    padding: 2rem 1rem;
+  }
+
+  .ss-section-inner {
     padding: 2rem 1rem;
   }
 

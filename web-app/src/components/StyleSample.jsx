@@ -5,10 +5,13 @@ import './StyleSample.css'
 const colors = [
   { name: 'Background Cream', hex: '#f5f0e8' },
   { name: 'Card Surface', hex: '#faf8f3' },
+  { name: 'Charcoal', hex: '#1a1a1a' },
+  { name: 'Dark Slate', hex: '#2c2c2c' },
   { name: 'Primary Text', hex: '#2c2416' },
   { name: 'Secondary Text', hex: '#6b5e4f' },
-  { name: 'Accent Teal', hex: '#2a6e6e' },
-  { name: 'Aged Gold', hex: '#b8860b' },
+  { name: 'Text on Dark', hex: '#a89a88' },
+  { name: 'Circuit Red', hex: '#c0392b' },
+  { name: 'Signal Gold', hex: '#d4a017' },
   { name: 'Copper Hover', hex: '#b87333' },
 ]
 
@@ -27,13 +30,13 @@ export default function StyleSample() {
 
   return (
     <div className="style-sample">
-      {/* Header */}
-      <header className="ss-header">
+      {/* Header — Dark */}
+      <header className="ss-header ss-section-dark">
         <h1>Noisebridge Library</h1>
         <p className="subtitle">Card Catalog Design System &mdash; Style Sample</p>
       </header>
 
-      {/* 1. Typography Specimen */}
+      {/* 1. Typography Specimen — Light */}
       <section className="ss-section">
         <p className="ss-section-label">Section 01</p>
         <h2 className="ss-section-title">Typography Specimen</h2>
@@ -63,7 +66,7 @@ export default function StyleSample() {
         </div>
       </section>
 
-      {/* 2. Color Palette */}
+      {/* 2. Color Palette — Light */}
       <section className="ss-section">
         <p className="ss-section-label">Section 02</p>
         <h2 className="ss-section-title">Color Palette</h2>
@@ -83,7 +86,7 @@ export default function StyleSample() {
         </div>
       </section>
 
-      {/* 3. Texture Samples */}
+      {/* 3. Texture Samples — Light (with dark swatches) */}
       <section className="ss-section">
         <p className="ss-section-label">Section 03</p>
         <h2 className="ss-section-title">Texture Samples</h2>
@@ -100,36 +103,44 @@ export default function StyleSample() {
           <div className="texture-sample texture-linen">
             <span className="texture-sample-label">Linen Weave</span>
           </div>
+          <div className="texture-sample texture-dark-grain">
+            <span className="texture-sample-label texture-sample-label-dark">Dark Grain</span>
+          </div>
+          <div className="texture-sample texture-dark-flat">
+            <span className="texture-sample-label texture-sample-label-dark">Dark Flat</span>
+          </div>
         </div>
       </section>
 
-      {/* 4. Book Card Mockups */}
-      <section className="ss-section">
-        <p className="ss-section-label">Section 04</p>
-        <h2 className="ss-section-title">Book Card Mockups</h2>
-        <div className="book-cards">
-          {featuredBooks.map((book) => (
-            <div key={book.title} className="book-card">
-              <img
-                className="book-card-cover"
-                src={book.coverUrl}
-                alt={`Cover of ${book.title}`}
-                loading="lazy"
-              />
-              <div className="book-card-body">
-                <p className="book-card-title">{book.title}</p>
-                <p className="book-card-author">{book.author}</p>
-                <div className="book-card-meta">
-                  <span className="book-card-genre">{book.genre}</span>
-                  <span className="book-card-location">{book.location}</span>
+      {/* 4. Book Card Mockups — Dark */}
+      <section className="ss-section ss-section-dark">
+        <div className="ss-section-inner">
+          <p className="ss-section-label">Section 04</p>
+          <h2 className="ss-section-title">Book Card Mockups</h2>
+          <div className="book-cards">
+            {featuredBooks.map((book) => (
+              <div key={book.title} className="book-card book-card-dark">
+                <img
+                  className="book-card-cover"
+                  src={book.coverUrl}
+                  alt={`Cover of ${book.title}`}
+                  loading="lazy"
+                />
+                <div className="book-card-body">
+                  <p className="book-card-title">{book.title}</p>
+                  <p className="book-card-author">{book.author}</p>
+                  <div className="book-card-meta">
+                    <span className="book-card-genre">{book.genre}</span>
+                    <span className="book-card-location">{book.location}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* 5. Search Bar */}
+      {/* 5. Search Bar — Light */}
       <section className="ss-section">
         <p className="ss-section-label">Section 05</p>
         <h2 className="ss-section-title">Search — "The Typewriter"</h2>
@@ -146,7 +157,7 @@ export default function StyleSample() {
         </div>
       </section>
 
-      {/* 6. Featured Quote Card */}
+      {/* 6. Featured Quote Card — Light */}
       <section className="ss-section">
         <p className="ss-section-label">Section 06</p>
         <h2 className="ss-section-title">Featured Quote</h2>
@@ -156,49 +167,51 @@ export default function StyleSample() {
         </div>
       </section>
 
-      {/* 7. Collage Preview */}
-      <section className="ss-section">
-        <p className="ss-section-label">Section 07</p>
-        <h2 className="ss-section-title">Collage Preview</h2>
-        <div className="collage-container">
-          <div className="collage-wrapper">
-            {featuredBooks.slice(0, 6).map((book, i) => {
-              const pos = collagePositions[i]
-              return (
-                <div
-                  key={book.title}
-                  className="collage-item"
-                  style={{
-                    top: pos.top,
-                    left: pos.left,
-                    width: pos.width,
-                    height: pos.height,
-                    transform: `rotate(${pos.rotate})`,
-                    zIndex: pos.z,
-                  }}
-                >
-                  <img src={book.coverUrl} alt={book.title} loading="lazy" />
-                </div>
-              )
-            })}
-            <div
-              className="collage-quote"
-              style={{
-                bottom: '5%',
-                right: '5%',
-                transform: 'rotate(2deg)',
-                zIndex: 5,
-              }}
-            >
-              {quotes[1].text}
-              <span className="collage-quote-attr">&mdash; {quotes[1].attribution}</span>
+      {/* 7. Collage Preview — Dark */}
+      <section className="ss-section ss-section-dark">
+        <div className="ss-section-inner">
+          <p className="ss-section-label">Section 07</p>
+          <h2 className="ss-section-title">Collage Preview</h2>
+          <div className="collage-container">
+            <div className="collage-wrapper">
+              {featuredBooks.slice(0, 6).map((book, i) => {
+                const pos = collagePositions[i]
+                return (
+                  <div
+                    key={book.title}
+                    className="collage-item"
+                    style={{
+                      top: pos.top,
+                      left: pos.left,
+                      width: pos.width,
+                      height: pos.height,
+                      transform: `rotate(${pos.rotate})`,
+                      zIndex: pos.z,
+                    }}
+                  >
+                    <img src={book.coverUrl} alt={book.title} loading="lazy" />
+                  </div>
+                )
+              })}
+              <div
+                className="collage-quote collage-quote-dark"
+                style={{
+                  bottom: '5%',
+                  right: '5%',
+                  transform: 'rotate(2deg)',
+                  zIndex: 5,
+                }}
+              >
+                {quotes[1].text}
+                <span className="collage-quote-attr">&mdash; {quotes[1].attribution}</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="ss-footer">
+      {/* Footer — Dark */}
+      <footer className="ss-footer ss-section-dark">
         Noisebridge Library &bull; Card Catalog Design System &bull; Style Sample v0.1
       </footer>
     </div>
