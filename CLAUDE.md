@@ -103,6 +103,10 @@ Examples of experiments that might be built here:
 - **Analytics**: Reading patterns, popular genres, collection gaps
 - **Physical Interfaces**: Kiosk displays, label printing, location mapping
 
+### Tone and Language
+
+This is a community project, not a corporate product. Avoid PM jargon in docs, comments, and generated text — words like "product," "feature," "stakeholder," "user engagement," "roadmap," "KPIs," "metrics." Use plain, human language. Say "what we're building" not "the product." Say "ideas" not "features." Say "what's next" not "roadmap." Writing should feel like it comes from someone who cares, not someone who manages.
+
 ### Key Considerations for Noisebridge Context
 
 - **Shared Resource**: Books are communally owned and managed
