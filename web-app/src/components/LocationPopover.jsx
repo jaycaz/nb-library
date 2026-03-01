@@ -41,7 +41,7 @@ const LocationPopover = ({ isOpen, onClose, shelfLocation }) => {
     <div className="location-popover-overlay">
       <div className="location-popover-content" onClick={(e) => e.stopPropagation()}>
         <div className="popover-header">
-          <h3 className="popover-title">Where to find this book</h3>
+          <h3 className="popover-title">Shelf Location</h3>
           <button
             className="popover-close"
             onClick={onClose}

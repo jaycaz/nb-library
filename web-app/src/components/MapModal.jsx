@@ -29,10 +29,7 @@ const MapModal = ({ isOpen, onClose }) => {
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
-          <h2 className="modal-title">
-            <span className="map-icon">🗺️</span>
-            Noisebridge Library Map
-          </h2>
+          <h2 className="modal-title">Library Map</h2>
           <button
             className="modal-close"
             onClick={onClose}
@@ -46,12 +43,16 @@ const MapModal = ({ isOpen, onClose }) => {
         <div className="modal-body">
           <Floorplan showAllShelves={true} />
           <div className="map-instructions">
-            <p><strong>How to find your book:</strong></p>
-            <ul>
-              <li>Find the shelf number on your book card (e.g., 📍 2.5)</li>
-              <li>Locate the corresponding red shelf on this map</li>
-              <li>Visit the physical location to find your book!</li>
-            </ul>
+            <div className="map-instructions-header">
+              <span className="map-instructions-label">How to Use</span>
+            </div>
+            <div className="map-instructions-body">
+              <ul>
+                <li>Find the shelf number on your book card (e.g., 2.5)</li>
+                <li>Locate the corresponding highlighted shelf on this map</li>
+                <li>Visit the physical location to find your book</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

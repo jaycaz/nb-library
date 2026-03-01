@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.85);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,29 +13,34 @@
 }
 
 .location-popover-content {
-  background: white;
-  border-radius: 12px;
+  background-color: #1a1a1a;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  border-radius: 2px;
   width: 100%;
   max-width: 1400px;
   max-height: 90vh;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  box-shadow: 4px 4px 0 #0a0a0a;
 }
 
 .popover-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 28px 32px;
-  border-bottom: 1px solid #e5e7eb;
+  padding: 24px 28px;
+  border-bottom: 3px solid #d4a017;
 }
 
 .popover-title {
   margin: 0;
-  font-size: 24px;
-  font-weight: 700;
-  color: #1f2937;
+  font-family: 'Archivo', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #f5f0e8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .popover-close {
@@ -43,25 +48,25 @@
   border: none;
   padding: 6px;
   cursor: pointer;
-  color: #6b7280;
-  border-radius: 4px;
-  transition: all 0.2s ease;
+  color: #a89a88;
+  border-radius: 2px;
+  transition: color 0.15s ease;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .popover-close:hover {
-  background: #f3f4f6;
-  color: #1f2937;
+  color: #f5f0e8;
+  background: none;
 }
 
 .popover-close:active {
-  background: #e5e7eb;
+  color: #b87333;
 }
 
 .popover-body {
-  padding: 32px;
+  padding: 28px;
   overflow-y: auto;
   scrollbar-gutter: stable;
 }
@@ -84,7 +89,6 @@
   stroke: none;
 }
 
-/* Mobile responsive */
 @media (max-width: 768px) {
   .location-popover-overlay {
     padding: 12px;
@@ -99,19 +103,17 @@
   }
 
   .popover-title {
-    font-size: 18px;
+    font-size: 1rem;
   }
 
   .popover-body {
     padding: 20px;
   }
 
-  /* Larger text for floorplan in popover on mobile */
   .location-popover-content .shelf-label {
     font-size: 6px;
   }
 
-  /* Enhanced shelf styling for popover on mobile */
   .location-popover-content .shelf-region.highlighted {
     stroke-width: 1.0;
   }
